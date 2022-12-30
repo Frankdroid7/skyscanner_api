@@ -41,17 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _test() async {
     try {
-      final response = await _scannerApi.getGeoNearestFlights(
-        nearestFlight: NearestFlight(
-          locale: 'en-GB',
-          locator: Locator(
-            coordinates: Coordinates(
-              latitude: 51.5072,
-              longitude: 51.5072,
-            ),
-          ),
-        ),
-      );
+      final response = await _scannerApi.getNearestCulture('192.0.2.0');
       _data = response.toString();
     } catch (e) {
       _data = e.toString();

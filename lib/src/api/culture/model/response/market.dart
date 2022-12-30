@@ -15,14 +15,20 @@ class MarketResponse {
   }
 }
 
-class Markets {
+/// Market countries that Skyscanner supports.
+class Market {
+  /// Market code, e.g.: UK
   String? code;
+
+  /// The market name, e.g.: United Kingdom
   String? name;
+
+  /// The currency of the 'Market'
   String? currency;
 
-  Markets({this.code, this.name, this.currency});
+  Market({this.code, this.name, this.currency});
 
-  Markets.fromJson(Map<String, dynamic> json) {
+  Market.fromJson(Map<String, dynamic> json) {
     code = json['code'];
     name = json['name'];
     currency = json['currency'];
