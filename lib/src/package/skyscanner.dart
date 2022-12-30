@@ -1,9 +1,20 @@
+import 'package:skyscanner_api/src/api/culture/model/model_exports.dart';
+import 'package:skyscanner_api/src/api/culture/model/response/currency.dart';
+import 'package:skyscanner_api/src/api/culture/model/response/locale.dart';
+
 import '../common/common_export.dart';
 import '../manager/manager_exports.dart';
 
 class SkyScannerApi {
   String _apiKey = "";
   SkyScannerManager? _scannerManager;
+
+  static final SkyScannerApi _singleton = SkyScannerApi.createInstance();
+  SkyScannerApi.createInstance();
+
+  factory SkyScannerApi() {
+    return _singleton;
+  }
 
   /// Initialize the SkyScanner object. It should be called as early as possible
   /// (preferably in initState() of the Widget.
@@ -23,7 +34,7 @@ class SkyScannerApi {
     _apiKey = apiKey;
 
     /// Initialize scanner manager
-    _scannerManager = SkyScannerManager(_apiKey);
+    _scannerManager = SkyScannerManager();
   }
 
   /// Resets the value of the api key to be empty
@@ -31,6 +42,12 @@ class SkyScannerApi {
     _apiKey = "";
   }
 
-  /// make request to sample data
-  Future<dynamic> sampleData() async => await _scannerManager?.sampleData();
+  String get apiKey => _apiKey;
+
+  Future<CurrencyResponse?> getCurrencies() async =>
+      await _scannerManager?.getCurrencies();
+  Future<LocaleResponse?> getLocales() async =>
+      await _scannerManager?.getLocales();
+  Future<MarketResponse?> getMarkets(String locale) async =>
+      await _scannerManager?.getMarkets(locale);
 }

@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
+import 'package:skyscanner_api/skyscanner_export.dart';
 import 'api_error.dart';
 import 'header_service.dart';
 
@@ -46,7 +47,6 @@ class NetworkService with HeaderService {
 
   Future<Response> request({
     required String path,
-    required String apiKey,
     required RequestMethod method,
     Map<String, dynamic>? queryParams,
     Map<String, dynamic>? data,
@@ -57,30 +57,38 @@ class NetworkService with HeaderService {
     if (params.keys.contains("searchTerm")) {
       params["searchTerm"] = Uri.encodeQueryComponent(params["searchTerm"]);
     }
+    SkyScannerApi skyScannerApi = SkyScannerApi();
     try {
       switch (method) {
         case RequestMethod.post:
           response = await dio!.post(path,
-              queryParameters: params, data: data, options: dioOptions(apiKey));
+              queryParameters: params,
+              data: data,
+              options: dioOptions(skyScannerApi.apiKey));
           break;
         case RequestMethod.get:
-          response = await dio!
-              .get(path, queryParameters: params, options: dioOptions(apiKey));
+          response = await dio!.get(path,
+              queryParameters: params,
+              options: dioOptions(skyScannerApi.apiKey));
 
           break;
         case RequestMethod.put:
           response = await dio!.put(path,
-              queryParameters: params, data: data, options: dioOptions(apiKey));
+              queryParameters: params,
+              data: data,
+              options: dioOptions(skyScannerApi.apiKey));
           break;
         case RequestMethod.delete:
           response = await dio!.delete(path,
-              queryParameters: params, data: data, options: dioOptions(apiKey));
+              queryParameters: params,
+              data: data,
+              options: dioOptions(skyScannerApi.apiKey));
           break;
         case RequestMethod.upload:
           response = await dio!.post(path,
               data: formData,
               queryParameters: params,
-              options: dioOptions(apiKey),
+              options: dioOptions(skyScannerApi.apiKey),
               onSendProgress: (sent, total) {});
           break;
       }
