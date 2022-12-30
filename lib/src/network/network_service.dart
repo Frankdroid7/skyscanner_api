@@ -10,7 +10,7 @@ enum RequestType { post, get, put, delete, upload }
 /// description: A network provider wrapper class which manages network connections
 /// between the app and external services. This is a wrapper around [Dio].
 ///
-/// Using this class automatically handle, token management, logging, global
+/// Using this class automatically handles token management, logging, global
 class NetworkService with HeaderService {
   static const int connectTimeout = 30000;
   static const int receiveTimeout = 30000;
