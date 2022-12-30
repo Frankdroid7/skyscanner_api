@@ -42,12 +42,18 @@ class SkyScannerApi {
     _apiKey = "";
   }
 
+  /// Getter ApiKey
   String get apiKey => _apiKey;
 
+  /// Getter for fetching of currencies
   Future<CurrencyResponse?> getCurrencies() async =>
       await _scannerManager?.getCurrencies();
+
+  /// Getter for fetching of locales
   Future<LocaleResponse?> getLocales() async =>
       await _scannerManager?.getLocales();
+
+  /// Getter for fetching of markets
   Future<MarketResponse?> getMarkets(String locale) async =>
       await _scannerManager?.getMarkets(locale);
 }

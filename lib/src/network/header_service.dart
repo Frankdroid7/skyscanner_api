@@ -2,11 +2,17 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 
-mixin HeaderService {
-  Map<String, String> _headers(String apiKey) =>
-      {HttpHeaders.acceptHeader: 'application/json', 'x-api-key': apiKey};
+import '../../skyscanner_export.dart';
 
-  Options dioOptions(String apiKey) => Options(headers: _headers(apiKey));
+mixin HeaderService {
+  final SkyScannerApi _skyScannerApi = SkyScannerApi();
+
+  Map<String, String> get _headers => {
+        HttpHeaders.acceptHeader: 'application/json',
+        'x-api-key': _skyScannerApi.apiKey
+      };
+
+  Options get dioOptions => Options(headers: _headers);
 
   final String baseUrl = 'https://partners.api.skyscanner.net/apiservices/v3/';
 }
