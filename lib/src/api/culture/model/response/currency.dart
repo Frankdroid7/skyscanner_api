@@ -1,30 +1,44 @@
 class CurrencyResponse {
   String? status;
-  List<Currencies>? currencies;
+  List<Currency>? currencies;
 
   CurrencyResponse({this.status, this.currencies});
 
   CurrencyResponse.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     if (json['currencies'] != null) {
-      currencies = <Currencies>[];
+      currencies = <Currency>[];
       json['currencies'].forEach((v) {
-        currencies!.add(Currencies.fromJson(v));
+        currencies!.add(Currency.fromJson(v));
       });
     }
   }
 }
 
-class Currencies {
+/// Currency that Skyscanner supports and information about how Skyscanner formats them.
+class Currency {
+  /// Currency code, e.g.: GBP for the Pound
   String? code;
+
+  /// Currency symbol, e.g.: £
   String? symbol;
+
+  /// The string for thousands separation
   String? thousandsSeparator;
+
+  /// The string for decimal separation
   String? decimalSeparator;
+
+  /// Whether to show the currency symbol on the left or right.
   bool? symbolOnLeft;
+
+  /// Whether to include a space between the amount and symbol.
   bool? spaceBetweenAmountAndSymbol;
+
+  /// The number of digits shown after the decimal separator
   int? decimalDigits;
 
-  Currencies(
+  Currency(
       {this.code,
       this.symbol,
       this.thousandsSeparator,
@@ -33,7 +47,7 @@ class Currencies {
       this.spaceBetweenAmountAndSymbol,
       this.decimalDigits});
 
-  Currencies.fromJson(Map<String, dynamic> json) {
+  Currency.fromJson(Map<String, dynamic> json) {
     code = json['code'];
     symbol = json['symbol'];
     thousandsSeparator = json['thousandsSeparator'];

@@ -1,7 +1,7 @@
-import 'package:skyscanner_api/src/api/culture/model/model_exports.dart';
+import 'package:skyscanner_api/skyscanner_export.dart';
 import 'package:skyscanner_api/src/api/culture/model/response/currency.dart';
 import 'package:skyscanner_api/src/api/culture/model/response/locale.dart';
-import 'package:skyscanner_api/src/api/geo/entity/nearest_flights_entity.dart';
+import 'package:skyscanner_api/src/api/culture/model/response/nearest_culture.dart';
 
 import '../common/common_export.dart';
 import '../manager/manager_exports.dart';
@@ -72,4 +72,9 @@ class SkyScannerApi {
   Future<Map<String, dynamic>?> getGeoNearestFlights(
           {required NearestFlight nearestFlight}) async =>
       await _scannerManager?.getGeoNearestFlights(nearestFlight);
+
+  /// Returns [NearestCulture]
+  /// Use this method to retrieve the most relevant culture information based on the [ipAddress]
+  Future<NearestCulture?> getNearestCulture(String ipAddress) async =>
+      await _scannerManager?.getNearestCulture(ipAddress);
 }
