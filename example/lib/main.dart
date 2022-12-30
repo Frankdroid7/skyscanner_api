@@ -35,13 +35,13 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   void initState() {
-    _scannerApi.initializeApiKey(apiKey: 'API KEY HERE');
+    _scannerApi.initializeApiKey(apiKey: 'prtl6749387986743898559646983194');
     super.initState();
   }
 
   void _test() async {
     try {
-      final response = await _scannerApi.sampleData();
+      final response = await _scannerApi.getLocales();
       _data = response.toString();
     } catch (e) {
       _data = e.toString();

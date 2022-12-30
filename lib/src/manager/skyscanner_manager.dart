@@ -1,18 +1,31 @@
-import 'package:skyscanner_api/src/api/service/skyscanner_contract_impl.dart';
-
-import '../api/model/model_exports.dart';
+import 'package:skyscanner_api/src/api/culture/model/model_exports.dart';
+import 'package:skyscanner_api/src/api/culture/model/response/currency.dart';
+import 'package:skyscanner_api/src/api/culture/model/response/locale.dart';
+import 'package:skyscanner_api/src/api/culture/service/culture_contract_impl.dart';
 
 /// Wrapper class to manage all of Skyscanner Contract Implementations
 class SkyScannerManager {
-  final _skyScannerContractImpl = SkyScannerContractImpl();
+  final CultureContractImpl _cultureContractImpl = CultureContractImpl();
 
-  late final String _apiKey;
-
-  SkyScannerManager(this._apiKey);
-
-  Future<SampleResponse> sampleData() async {
+  Future<CurrencyResponse> getCurrencies() async {
     try {
-      return await _skyScannerContractImpl.sampleData(_apiKey);
+      return await _cultureContractImpl.getCurrencies();
+    } catch (e) {
+      throw Exception(e.toString());
+    }
+  }
+
+  Future<LocaleResponse> getLocales() async {
+    try {
+      return await _cultureContractImpl.getLocales();
+    } catch (e) {
+      throw Exception(e.toString());
+    }
+  }
+
+  Future<MarketResponse> getMarkets(String locale) async {
+    try {
+      return await _cultureContractImpl.getMarkets(locale);
     } catch (e) {
       throw Exception(e.toString());
     }
