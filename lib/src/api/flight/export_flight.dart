@@ -15,3 +15,13 @@ export '../flight/live/model/flight_live_prices_create_response/results.dart';
 export '../flight/live/model/flight_live_prices_create_response/segments.dart';
 export '../flight/live/model/flight_live_prices_create_response/sorting_options.dart';
 export '../flight/live/model/flight_live_prices_create_response/stats.dart';
+
+export '../flight/indicative/entity/indicative_search_entity/date_range.dart';
+export '../flight/indicative/entity/indicative_search_entity/destination_place.dart';
+export '../flight/indicative/entity/indicative_search_entity/end_date.dart';
+export '../flight/indicative/entity/indicative_search_entity/indicative_search_entity.dart';
+export '../flight/indicative/entity/indicative_search_entity/origin_place.dart';
+export '../flight/indicative/entity/indicative_search_entity/mquery_leg.dart';
+export '../flight/indicative/entity/indicative_search_entity/query_place.dart';
+export 'indicative/entity/indicative_search_entity/mquery.dart';
+export '../flight/indicative/entity/indicative_search_entity/start_date.dart';

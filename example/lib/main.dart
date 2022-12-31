@@ -40,8 +40,23 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _test() async {
     try {
-      final response = await _scannerApi.refreshSessionToken(
-          'CkBDaTRJQVJJcUNpZ0tKREV3T0dRek56Y3hMVE01WVRNdE5EbGxNaTFpTXpSakxUSTNabUk1TldNMU5HVXdZUkFEIi0KAlVLEgVlbi1HQhoDR0JQIhcKBQoDTEhSEgUKA0VESRoHCOYPEAwYFSgBMAEqJDEwOGQzNzcxLTM5YTMtNDllMi1iMzRjLTI3ZmI5NWM1NGUwYQ==-cells1');
+      final response = await _scannerApi.indicativeSearch(
+          IndicativeSearchEntity(
+              query: MQuery(
+                  currency: 'GBP',
+                  locale: 'en-GB',
+                  market: 'UK',
+                  dateTimeGroupingType: 'DATE_TIME_GROUPING_TYPE_BY_MONTH',
+                  queryLegs: [
+            MQueryLeg(
+                originPlace:
+                    OriginPlace(queryPlace: QueryPlace(entityId: '27544008')),
+                destinationPlace: DestinationPlace(
+                    queryPlace: QueryPlace(entityId: '27539733')),
+                dateRange: DateRange(
+                    startDate: StartDate(year: 2022, month: 11),
+                    endDate: EndDate(year: 2023, month: 4)))
+          ])));
       _data = response?.toString() ?? '';
     } catch (e) {
       _data = e.toString();

@@ -3,6 +3,7 @@ import 'package:skyscanner_api/src/api/culture/model/response/currency.dart';
 import 'package:skyscanner_api/src/api/culture/model/response/locale.dart';
 import 'package:skyscanner_api/src/api/flight/live/model/flight_live_prices_create_response/flight_live_prices_create_response.dart';
 
+import '../api/flight/indicative/entity/indicative_search_entity/indicative_search_entity.dart';
 import '../api/flight/live/entity/flight_live_prices_create_entity/flight_live_prices_create_entity.dart';
 import '../common/common_export.dart';
 import '../manager/manager_exports.dart';
@@ -77,4 +78,8 @@ class SkyScannerApi {
   /// Getter for creating itinary refresh
   Future<dynamic> refreshSessionToken(String refreshSessionToken) async =>
       await _scannerManager?.refreshSessionToken(refreshSessionToken);
+
+  /// Getter for indicative search
+  Future<dynamic> indicativeSearch(IndicativeSearchEntity entity) async =>
+      await _scannerManager?.indicativeSearch(entity);
 }

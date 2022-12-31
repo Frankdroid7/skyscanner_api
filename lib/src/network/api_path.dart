@@ -9,4 +9,5 @@ class ApiPath {
   static const String createItineraryRefreshSessionToken =
       'flights/live/itineraryrefresh/poll/';
   static const String cultureCurrencies = 'culture/currencies';
+  static const String indicativeSearch = 'flights/indicative/search';
 }

@@ -2,8 +2,10 @@ import 'package:skyscanner_api/src/api/culture/model/model_exports.dart';
 import 'package:skyscanner_api/src/api/culture/model/response/currency.dart';
 import 'package:skyscanner_api/src/api/culture/model/response/locale.dart';
 import 'package:skyscanner_api/src/api/culture/service/culture_contract_impl.dart';
+import 'package:skyscanner_api/src/api/flight/indicative/entity/indicative_search_entity/indicative_search_entity.dart';
 import 'package:skyscanner_api/src/api/flight/live/entity/flight_live_prices_create_entity/flight_live_prices_create_entity.dart';
 
+import '../api/flight/indicative/contract/indicative_search_contract_impl.dart';
 import '../api/flight/live/contract/flight_live_contract_impl.dart';
 import '../api/flight/live/model/flight_live_prices_create_response/flight_live_prices_create_response.dart';
 
@@ -12,6 +14,8 @@ class SkyScannerManager {
   final CultureContractImpl _cultureContractImpl = CultureContractImpl();
   final FlightLiveContractImpl _flightLiveContractImpl =
       FlightLiveContractImpl();
+  final IndicativeSearchContractImpl _indicativeSearchContractImpl =
+      IndicativeSearchContractImpl();
 
   /// Return currencies
   Future<CurrencyResponse> getCurrencies() async {
@@ -76,6 +80,15 @@ class SkyScannerManager {
     try {
       return await _flightLiveContractImpl
           .refreshSessionToken(refreshSessionToken);
+    } catch (e) {
+      throw Exception(e.toString());
+    }
+  }
+
+  /// Indicative Search
+  Future<dynamic> indicativeSearch(IndicativeSearchEntity entity) async {
+    try {
+      return await _indicativeSearchContractImpl.indicativeSearch(entity);
     } catch (e) {
       throw Exception(e.toString());
     }
