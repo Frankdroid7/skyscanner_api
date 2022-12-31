@@ -9,6 +9,7 @@ import '../../skyscanner_export.dart';
 import '../api/flight/indicative/contract/indicative_search_contract_impl.dart';
 import '../api/flight/live/contract/flight_live_contract_impl.dart';
 import '../api/flight/live/model/flight_live_prices_create_response/flight_live_prices_create_response.dart';
+import '../api/referral/contracts/referal_contract_impl.dart';
 
 /// Wrapper class to manage all of Skyscanner Contract Implementations
 class SkyScannerManager {
@@ -19,6 +20,7 @@ class SkyScannerManager {
   final IndicativeSearchContractImpl _indicativeSearchContractImpl =
       IndicativeSearchContractImpl();
   final CarriersContractImpl _carriersContractImpl = CarriersContractImpl();
+  final ReferralContractImpl _referralContractImpl = ReferralContractImpl();
 
   /// Return currencies
   Future<CurrencyResponse> getCurrencies() async {
@@ -129,6 +131,25 @@ class SkyScannerManager {
   Future<Map<String, dynamic>> getCarriers() async {
     try {
       return await _carriersContractImpl.getCarriers();
+    } catch (e) {
+      throw Exception(e.toString());
+    }
+  }
+
+  /// Fetch flights dayview
+  Future<Map<String, dynamic>> getFlightsDayView(
+      {ReferralEntity? entity}) async {
+    try {
+      return await _referralContractImpl.getFlightsDayView(entity: entity);
+    } catch (e) {
+      throw Exception(e.toString());
+    }
+  }
+
+  /// Fetch cars dayview
+  Future<Map<String, dynamic>> getCarsDayView({ReferralEntity? entity}) async {
+    try {
+      return await _referralContractImpl.getCarsDayView(entity: entity);
     } catch (e) {
       throw Exception(e.toString());
     }

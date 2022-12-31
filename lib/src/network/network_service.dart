@@ -15,11 +15,12 @@ class NetworkService with HeaderService {
   static const int connectTimeout = 30000;
   static const int receiveTimeout = 30000;
   Dio? dio;
+  String? mbaseUrl;
 
   /// Returns the current build status of the application
   bool get _isDebugMode => kDebugMode;
 
-  NetworkService() {
+  NetworkService({this.mbaseUrl}) {
     _initialiseDio();
   }
 
@@ -28,7 +29,7 @@ class NetworkService with HeaderService {
     dio = Dio(BaseOptions(
         connectTimeout: connectTimeout,
         receiveTimeout: receiveTimeout,
-        baseUrl: baseUrl));
+        baseUrl: mbaseUrl ?? baseUrl));
     dio!.interceptors
       ..add(LogInterceptor(requestBody: true))
       ..add(PrettyDioLogger(

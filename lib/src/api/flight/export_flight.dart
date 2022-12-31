@@ -25,3 +25,4 @@ export '../flight/indicative/entity/indicative_search_entity/mquery_leg.dart';
 export '../flight/indicative/entity/indicative_search_entity/query_place.dart';
 export 'indicative/entity/indicative_search_entity/mquery.dart';
 export '../flight/indicative/entity/indicative_search_entity/start_date.dart';
+export '../referral/entity/referral_entity.dart';
