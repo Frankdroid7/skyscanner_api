@@ -1,11 +1,9 @@
 import 'package:skyscanner_api/skyscanner_export.dart';
 import 'package:skyscanner_api/src/api/culture/model/response/currency.dart';
 import 'package:skyscanner_api/src/api/culture/model/response/locale.dart';
-import 'package:skyscanner_api/src/api/flight/live/model/flight_live_prices_create_response/flight_live_prices_create_response.dart';
 import 'package:skyscanner_api/src/api/culture/model/response/nearest_culture.dart';
+import 'package:skyscanner_api/src/api/flight/live/model/flight_live_prices_create_response/flight_live_prices_create_response.dart';
 
-import '../api/flight/indicative/entity/indicative_search_entity/indicative_search_entity.dart';
-import '../api/flight/live/entity/flight_live_prices_create_entity/flight_live_prices_create_entity.dart';
 import '../common/common_export.dart';
 import '../manager/manager_exports.dart';
 
@@ -90,7 +88,7 @@ class SkyScannerApi {
   Future<dynamic> indicativeSearch(IndicativeSearchEntity entity) async =>
       await _scannerManager?.indicativeSearch(entity);
 
-/// Returns a Map of geographical locations in a language determined by the given [locale].
+  /// Returns a Map of geographical locations in a language determined by the given [locale].
   Future<Map<String, dynamic>?> getGeoFlights(String locale) async =>
       await _scannerManager?.getGeoFlights(locale);
 
@@ -108,4 +106,14 @@ class SkyScannerApi {
   /// The Map contains 'name' - The legal name of the carrier and 'iata' - The IATA code of the carrier.
   Future<Map<String, dynamic>?> getCarriers() async =>
       await _scannerManager?.getCarriers();
+
+  /// Returns a map of a full list of referrals for flights
+  Future<Map<String, dynamic>?> getFlightsDayView(
+          {ReferralEntity? entity}) async =>
+      await _scannerManager?.getFlightsDayView(entity: entity);
+
+  /// Returns a map of a full list of referrals for cars
+  Future<Map<String, dynamic>?> getCarsDayView(
+          {ReferralEntity? entity}) async =>
+      await _scannerManager?.getCarsDayView(entity: entity);
 }
