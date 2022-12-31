@@ -3,13 +3,11 @@ import 'package:skyscanner_api/src/api/flight/indicative/entity/indicative_searc
 import '../../../../network/network_exports.dart';
 import 'indicative_search_contract.dart';
 
-class IndicativeSearchContractImpl implements IndicativeSearchContract {
-  NetworkService networkService = NetworkService();
-
+class IndicativeSearchContractImpl extends IndicativeSearchContract {
   @override
   Future<dynamic> indicativeSearch(IndicativeSearchEntity entity) async {
     try {
-      final response = await networkService.request(
+      final response = await request(
           path: ApiPath.indicativeSearch,
           method: RequestType.post,
           data: entity.toJson());

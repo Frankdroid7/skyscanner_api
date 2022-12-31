@@ -4,14 +4,12 @@ import 'package:skyscanner_api/src/api/flight/live/model/flight_live_prices_crea
 import '../../../../network/network_exports.dart';
 import 'flight_live_contract.dart';
 
-class FlightLiveContractImpl implements FlightLiveContract {
-  NetworkService networkService = NetworkService();
-
+class FlightLiveContractImpl extends FlightLiveContract {
   @override
   Future<FlightLivePricesCreateResponse> createLiveFlight(
       FlightLivePricesCreateEntity entity) async {
     try {
-      final response = await networkService.request(
+      final response = await request(
           path: ApiPath.createFlightsLiveSearchCreate,
           method: RequestType.post,
           data: entity.toJson());
@@ -25,7 +23,7 @@ class FlightLiveContractImpl implements FlightLiveContract {
   Future<FlightLivePricesCreateResponse> createLiveSearchPoll(
       String sessionToken) async {
     try {
-      final response = await networkService.request(
+      final response = await request(
           path: '${ApiPath.createFlightsLiveSearchPoll}$sessionToken',
           method: RequestType.post);
       return FlightLivePricesCreateResponse.fromJson(response.data);
@@ -38,7 +36,7 @@ class FlightLiveContractImpl implements FlightLiveContract {
   Future<dynamic> createItineraryRefresh(
       String sessionToken, Map<String, dynamic> itineraryId) async {
     try {
-      final response = await networkService.request(
+      final response = await request(
           path: '${ApiPath.createItineraryRefresh}$sessionToken',
           method: RequestType.post,
           data: itineraryId);
@@ -51,7 +49,7 @@ class FlightLiveContractImpl implements FlightLiveContract {
   @override
   Future refreshSessionToken(String refreshSessionToken) async {
     try {
-      final response = await networkService.request(
+      final response = await request(
           path:
               '${ApiPath.createItineraryRefreshSessionToken}$refreshSessionToken',
           method: RequestType.get);
