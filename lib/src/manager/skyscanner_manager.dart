@@ -49,4 +49,14 @@ class SkyScannerManager {
       throw Exception(e.toString());
     }
   }
+
+  /// Create a search live poll
+  Future<FlightLivePricesCreateResponse> createLiveSearchPoll(
+      String sessionToken) async {
+    try {
+      return await _flightLiveContractImpl.createLiveSearchPoll(sessionToken);
+    } catch (e) {
+      throw Exception(e.toString());
+    }
+  }
 }

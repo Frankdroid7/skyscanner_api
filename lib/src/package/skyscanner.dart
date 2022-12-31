@@ -63,4 +63,9 @@ class SkyScannerApi {
   Future<FlightLivePricesCreateResponse?> createSearchLiveFlight(
           FlightLivePricesCreateEntity entity) async =>
       await _scannerManager?.createSearchLiveFlight(entity);
+
+  /// Getter for search of live poll flight
+  Future<FlightLivePricesCreateResponse?> createLiveSearchPoll(
+          String sessionToken) async =>
+      await _scannerManager?.createLiveSearchPoll(sessionToken);
 }

@@ -41,19 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void _test() async {
     try {
       final response =
-          await _scannerApi.createSearchLiveFlight(FlightLivePricesCreateEntity(
-              query: Query(
-                  locale: 'en-GB',
-                  currency: 'GBP',
-                  market: 'UK',
-                  queryLegs: [
-                    QueryLeg(
-                        date: Date(year: 2022, month: 12, day: 21),
-                        originPlaceId: OriginPlaceId(iata: 'LHR'),
-                        destinationPlaceId: DestinationPlaceId(iata: 'EDI'))
-                  ],
-                  adults: 1,
-                  cabinClass: 'CABIN_CLASS_ECONOMY')));
+          await _scannerApi.createLiveSearchPoll('Session Token Here');
       _data = response?.sessionToken ?? '';
     } catch (e) {
       _data = e.toString();

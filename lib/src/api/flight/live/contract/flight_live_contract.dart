@@ -5,4 +5,7 @@ import '../model/flight_live_prices_create_response/flight_live_prices_create_re
 abstract class FlightLiveContract {
   Future<FlightLivePricesCreateResponse> createLiveFlight(
       FlightLivePricesCreateEntity entity);
+
+  Future<FlightLivePricesCreateResponse> createLiveSearchPoll(
+      String sessionToken);
 }

@@ -12,9 +12,22 @@ class FlightLiveContractImpl implements FlightLiveContract {
       FlightLivePricesCreateEntity entity) async {
     try {
       final response = await networkService.request(
-          path: ApiPath.createFlightsLiveSearch,
+          path: ApiPath.createFlightsLiveSearchCreate,
           method: RequestType.post,
           data: entity.toJson());
+      return FlightLivePricesCreateResponse.fromJson(response.data);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<FlightLivePricesCreateResponse> createLiveSearchPoll(
+      String sessionToken) async {
+    try {
+      final response = await networkService.request(
+          path: '${ApiPath.createFlightsLiveSearchPoll}/$sessionToken',
+          method: RequestType.post);
       return FlightLivePricesCreateResponse.fromJson(response.data);
     } catch (e) {
       rethrow;
