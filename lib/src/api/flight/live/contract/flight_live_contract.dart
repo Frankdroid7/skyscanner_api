@@ -8,4 +8,9 @@ abstract class FlightLiveContract {
 
   Future<FlightLivePricesCreateResponse> createLiveSearchPoll(
       String sessionToken);
+
+  Future<dynamic> createItineraryRefresh(
+      String sessionToken, Map<String, dynamic> itineraryId);
+
+  Future<dynamic> refreshSessionToken(String refreshSessionToken);
 }

@@ -26,9 +26,36 @@ class FlightLiveContractImpl implements FlightLiveContract {
       String sessionToken) async {
     try {
       final response = await networkService.request(
-          path: '${ApiPath.createFlightsLiveSearchPoll}/$sessionToken',
+          path: '${ApiPath.createFlightsLiveSearchPoll}$sessionToken',
           method: RequestType.post);
       return FlightLivePricesCreateResponse.fromJson(response.data);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<dynamic> createItineraryRefresh(
+      String sessionToken, Map<String, dynamic> itineraryId) async {
+    try {
+      final response = await networkService.request(
+          path: '${ApiPath.createItineraryRefresh}$sessionToken',
+          method: RequestType.post,
+          data: itineraryId);
+      return response.data ?? {};
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future refreshSessionToken(String refreshSessionToken) async {
+    try {
+      final response = await networkService.request(
+          path:
+              '${ApiPath.createItineraryRefreshSessionToken}$refreshSessionToken',
+          method: RequestType.get);
+      return response.data ?? {};
     } catch (e) {
       rethrow;
     }

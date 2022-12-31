@@ -40,9 +40,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _test() async {
     try {
-      final response =
-          await _scannerApi.createLiveSearchPoll('Session Token Here');
-      _data = response?.sessionToken ?? '';
+      final response = await _scannerApi.refreshSessionToken(
+          'CkBDaTRJQVJJcUNpZ0tKREV3T0dRek56Y3hMVE01WVRNdE5EbGxNaTFpTXpSakxUSTNabUk1TldNMU5HVXdZUkFEIi0KAlVLEgVlbi1HQhoDR0JQIhcKBQoDTEhSEgUKA0VESRoHCOYPEAwYFSgBMAEqJDEwOGQzNzcxLTM5YTMtNDllMi1iMzRjLTI3ZmI5NWM1NGUwYQ==-cells1');
+      _data = response?.toString() ?? '';
     } catch (e) {
       _data = e.toString();
     }

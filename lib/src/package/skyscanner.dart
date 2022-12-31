@@ -68,4 +68,13 @@ class SkyScannerApi {
   Future<FlightLivePricesCreateResponse?> createLiveSearchPoll(
           String sessionToken) async =>
       await _scannerManager?.createLiveSearchPoll(sessionToken);
+
+  /// Getter for creating itinary refresh
+  Future<dynamic> createItineraryRefresh(
+          String sessionToken, Map<String, dynamic> itineraryId) async =>
+      await _scannerManager?.createItineraryRefresh(sessionToken, itineraryId);
+
+  /// Getter for creating itinary refresh
+  Future<dynamic> refreshSessionToken(String refreshSessionToken) async =>
+      await _scannerManager?.refreshSessionToken(refreshSessionToken);
 }

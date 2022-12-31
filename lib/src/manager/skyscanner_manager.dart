@@ -59,4 +59,25 @@ class SkyScannerManager {
       throw Exception(e.toString());
     }
   }
+
+  /// Create a refresh itinaries
+  Future<dynamic> createItineraryRefresh(
+      String sessionToken, Map<String, dynamic> itineraryId) async {
+    try {
+      return await _flightLiveContractImpl.createItineraryRefresh(
+          sessionToken, itineraryId);
+    } catch (e) {
+      throw Exception(e.toString());
+    }
+  }
+
+  /// Refresh itinaries session token
+  Future<dynamic> refreshSessionToken(String refreshSessionToken) async {
+    try {
+      return await _flightLiveContractImpl
+          .refreshSessionToken(refreshSessionToken);
+    } catch (e) {
+      throw Exception(e.toString());
+    }
+  }
 }
