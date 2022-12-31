@@ -1,4 +1,5 @@
 class ApiPath {
+  static const String carriers = 'flights/carriers';
   static const String cultureMarkets = 'culture/markets';
   static const String cultureLocales = 'culture/locales';
   static const String geoFlights = 'geo/hierarchy/flights/';

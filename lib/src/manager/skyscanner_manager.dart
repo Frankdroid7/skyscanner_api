@@ -1,3 +1,4 @@
+import 'package:skyscanner_api/src/api/carriers/service/carriers_contract_impl.dart';
 import 'package:skyscanner_api/src/api/culture/model/response/currency.dart';
 import 'package:skyscanner_api/src/api/culture/model/response/locale.dart';
 import 'package:skyscanner_api/src/api/culture/model/response/nearest_culture.dart';
@@ -10,6 +11,7 @@ import '../../skyscanner_export.dart';
 class SkyScannerManager {
   final GeoContractImpl _geoContractImpl = GeoContractImpl();
   final CultureContractImpl _cultureContractImpl = CultureContractImpl();
+  final CarriersContractImpl _carriersContractImpl = CarriersContractImpl();
 
   Future<CurrencyResponse> getCurrencies() async {
     try {
@@ -55,6 +57,14 @@ class SkyScannerManager {
   Future<NearestCulture> getNearestCulture(String ipAddress) async {
     try {
       return await _cultureContractImpl.getNearestCulture(ipAddress);
+    } catch (e) {
+      throw Exception(e.toString());
+    }
+  }
+
+  Future<Map<String, dynamic>> getCarriers() async {
+    try {
+      return await _carriersContractImpl.getCarriers();
     } catch (e) {
       throw Exception(e.toString());
     }

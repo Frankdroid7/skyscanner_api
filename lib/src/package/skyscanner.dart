@@ -77,4 +77,9 @@ class SkyScannerApi {
   /// Use this method to retrieve the most relevant culture information based on the [ipAddress]
   Future<NearestCulture?> getNearestCulture(String ipAddress) async =>
       await _scannerManager?.getNearestCulture(ipAddress);
+
+  /// Returns a Map of a full list of active carriers with name and IATA code indexed by their carrierId.
+  /// The Map contains 'name' - The legal name of the carrier and 'iata' - The IATA code of the carrier.
+  Future<Map<String, dynamic>?> getCarriers() async =>
+      await _scannerManager?.getCarriers();
 }
