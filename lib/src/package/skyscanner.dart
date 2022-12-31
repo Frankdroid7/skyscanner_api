@@ -1,7 +1,8 @@
-import 'package:skyscanner_api/src/api/culture/model/model_exports.dart';
+import 'package:skyscanner_api/skyscanner_export.dart';
 import 'package:skyscanner_api/src/api/culture/model/response/currency.dart';
 import 'package:skyscanner_api/src/api/culture/model/response/locale.dart';
 import 'package:skyscanner_api/src/api/flight/live/model/flight_live_prices_create_response/flight_live_prices_create_response.dart';
+import 'package:skyscanner_api/src/api/culture/model/response/nearest_culture.dart';
 
 import '../api/flight/indicative/entity/indicative_search_entity/indicative_search_entity.dart';
 import '../api/flight/live/entity/flight_live_prices_create_entity/flight_live_prices_create_entity.dart';
@@ -21,8 +22,7 @@ class SkyScannerApi {
 
   /// Initialize the SkyScanner object. It should be called as early as possible
   /// (preferably in initState() of the Widget.
-  ///
-  /// [apiKey] - your SkyScanner Api key. This is mandatory
+  /// [apiKey] - your SkyScanner Api key. This is mandatory.
   Future<void> initializeApiKey({required String apiKey}) async {
     assert(() {
       if (apiKey.isEmpty) {
@@ -45,18 +45,25 @@ class SkyScannerApi {
     _apiKey = "";
   }
 
-  /// Getter ApiKey
+  /// Getter for ApiKey
   String get apiKey => _apiKey;
 
-  /// Getter for fetching of currencies
+  /// Returns [CurrencyResponse].
+  /// Use this method to retrieve the currencies that Skyscanner supports
+  /// and information about how Skyscanner formats them.
   Future<CurrencyResponse?> getCurrencies() async =>
       await _scannerManager?.getCurrencies();
 
-  /// Getter for fetching of locales
+  /// Returns [LocaleResponse].
+  /// Use this method to retrieve the locales that Skyscanner supports.
+  /// The names of the locales returned are in the native language associated with the locale.
+  /// You can use the locales to translate the results of the other APIs to fit your content(language).
   Future<LocaleResponse?> getLocales() async =>
       await _scannerManager?.getLocales();
 
-  /// Getter for fetching of markets
+  /// Returns [MarketResponse].
+  /// Use this method to retrieve the market countries that Skyscanner supports.
+  /// The names of the markets returned are localised based on a locale passed as a parameter.
   Future<MarketResponse?> getMarkets(String locale) async =>
       await _scannerManager?.getMarkets(locale);
 
@@ -82,4 +89,23 @@ class SkyScannerApi {
   /// Getter for indicative search
   Future<dynamic> indicativeSearch(IndicativeSearchEntity entity) async =>
       await _scannerManager?.indicativeSearch(entity);
+
+/// Returns a Map of geographical locations in a language determined by the given [locale].
+  Future<Map<String, dynamic>?> getGeoFlights(String locale) async =>
+      await _scannerManager?.getGeoFlights(locale);
+
+  /// Returns a Map of geographical locations in a language determined by the given [locale] starting from the nearest airport.
+  Future<Map<String, dynamic>?> getGeoNearestFlights(
+          {required NearestFlight nearestFlight}) async =>
+      await _scannerManager?.getGeoNearestFlights(nearestFlight);
+
+  /// Returns [NearestCulture]
+  /// Use this method to retrieve the most relevant culture information based on the [ipAddress]
+  Future<NearestCulture?> getNearestCulture(String ipAddress) async =>
+      await _scannerManager?.getNearestCulture(ipAddress);
+
+  /// Returns a Map of a full list of active carriers with name and IATA code indexed by their carrierId.
+  /// The Map contains 'name' - The legal name of the carrier and 'iata' - The IATA code of the carrier.
+  Future<Map<String, dynamic>?> getCarriers() async =>
+      await _scannerManager?.getCarriers();
 }
