@@ -3,15 +3,12 @@ import 'package:skyscanner_api/src/api/culture/model/response/currency.dart';
 import 'package:skyscanner_api/src/api/culture/model/response/locale.dart';
 import 'package:skyscanner_api/src/api/culture/model/response/nearest_culture.dart';
 import 'package:skyscanner_api/src/api/culture/service/culture_contract_impl.dart';
-import 'package:skyscanner_api/src/api/flight/indicative/entity/indicative_search_entity/indicative_search_entity.dart';
-import 'package:skyscanner_api/src/api/flight/live/entity/flight_live_prices_create_entity/flight_live_prices_create_entity.dart';
-
-import '../api/flight/indicative/contract/indicative_search_contract_impl.dart';
-import '../api/flight/live/contract/flight_live_contract_impl.dart';
-import '../api/flight/live/model/flight_live_prices_create_response/flight_live_prices_create_response.dart';
 import 'package:skyscanner_api/src/api/geo/service/geo_contract_impl.dart';
 
 import '../../skyscanner_export.dart';
+import '../api/flight/indicative/contract/indicative_search_contract_impl.dart';
+import '../api/flight/live/contract/flight_live_contract_impl.dart';
+import '../api/flight/live/model/flight_live_prices_create_response/flight_live_prices_create_response.dart';
 
 /// Wrapper class to manage all of Skyscanner Contract Implementations
 class SkyScannerManager {
@@ -55,6 +52,12 @@ class SkyScannerManager {
       FlightLivePricesCreateEntity entity) async {
     try {
       return await _flightLiveContractImpl.createLiveFlight(entity);
+    } catch (e) {
+      throw Exception(e.toString());
+    }
+  }
+
+  /// Fetch the available geo flightsa
   Future<Map<String, dynamic>> getGeoFlights(String locale) async {
     try {
       return await _geoContractImpl.getGeoFlights(locale);
@@ -68,6 +71,12 @@ class SkyScannerManager {
       String sessionToken) async {
     try {
       return await _flightLiveContractImpl.createLiveSearchPoll(sessionToken);
+    } catch (e) {
+      throw Exception(e.toString());
+    }
+  }
+
+  /// Fetch nearest geo flights
   Future<Map<String, dynamic>> getGeoNearestFlights(
       NearestFlight nearestFlight) async {
     try {
@@ -83,6 +92,12 @@ class SkyScannerManager {
     try {
       return await _flightLiveContractImpl.createItineraryRefresh(
           sessionToken, itineraryId);
+    } catch (e) {
+      throw Exception(e.toString());
+    }
+  }
+
+  /// Fetch nearest cultures
   Future<NearestCulture> getNearestCulture(String ipAddress) async {
     try {
       return await _cultureContractImpl.getNearestCulture(ipAddress);
@@ -105,6 +120,12 @@ class SkyScannerManager {
   Future<dynamic> indicativeSearch(IndicativeSearchEntity entity) async {
     try {
       return await _indicativeSearchContractImpl.indicativeSearch(entity);
+    } catch (e) {
+      throw Exception(e.toString());
+    }
+  }
+
+  /// Fetch carriers
   Future<Map<String, dynamic>> getCarriers() async {
     try {
       return await _carriersContractImpl.getCarriers();
