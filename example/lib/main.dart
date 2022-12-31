@@ -11,12 +11,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: const MyHomePage(title: 'Flutter Demo Home Page'));
   }
 }
 
@@ -41,8 +40,24 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _test() async {
     try {
-      final response = await _scannerApi.getCarriers();
-      _data = response.toString();
+      final response = await _scannerApi.indicativeSearch(
+          IndicativeSearchEntity(
+              query: MQuery(
+                  currency: 'GBP',
+                  locale: 'en-GB',
+                  market: 'UK',
+                  dateTimeGroupingType: 'DATE_TIME_GROUPING_TYPE_BY_MONTH',
+                  queryLegs: [
+            MQueryLeg(
+                originPlace:
+                    OriginPlace(queryPlace: QueryPlace(entityId: '27544008')),
+                destinationPlace: DestinationPlace(
+                    queryPlace: QueryPlace(entityId: '27539733')),
+                dateRange: DateRange(
+                    startDate: StartDate(year: 2022, month: 11),
+                    endDate: EndDate(year: 2023, month: 4)))
+          ])));
+      _data = response?.toString() ?? '';
     } catch (e) {
       _data = e.toString();
     }

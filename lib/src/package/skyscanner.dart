@@ -1,8 +1,11 @@
 import 'package:skyscanner_api/skyscanner_export.dart';
 import 'package:skyscanner_api/src/api/culture/model/response/currency.dart';
 import 'package:skyscanner_api/src/api/culture/model/response/locale.dart';
+import 'package:skyscanner_api/src/api/flight/live/model/flight_live_prices_create_response/flight_live_prices_create_response.dart';
 import 'package:skyscanner_api/src/api/culture/model/response/nearest_culture.dart';
 
+import '../api/flight/indicative/entity/indicative_search_entity/indicative_search_entity.dart';
+import '../api/flight/live/entity/flight_live_prices_create_entity/flight_live_prices_create_entity.dart';
 import '../common/common_export.dart';
 import '../manager/manager_exports.dart';
 
@@ -64,7 +67,30 @@ class SkyScannerApi {
   Future<MarketResponse?> getMarkets(String locale) async =>
       await _scannerManager?.getMarkets(locale);
 
-  /// Returns a Map of geographical locations in a language determined by the given [locale].
+  /// Getter for creating of live flight
+  Future<FlightLivePricesCreateResponse?> createSearchLiveFlight(
+          FlightLivePricesCreateEntity entity) async =>
+      await _scannerManager?.createSearchLiveFlight(entity);
+
+  /// Getter for search of live poll flight
+  Future<FlightLivePricesCreateResponse?> createLiveSearchPoll(
+          String sessionToken) async =>
+      await _scannerManager?.createLiveSearchPoll(sessionToken);
+
+  /// Getter for creating itinary refresh
+  Future<dynamic> createItineraryRefresh(
+          String sessionToken, Map<String, dynamic> itineraryId) async =>
+      await _scannerManager?.createItineraryRefresh(sessionToken, itineraryId);
+
+  /// Getter for creating itinary refresh
+  Future<dynamic> refreshSessionToken(String refreshSessionToken) async =>
+      await _scannerManager?.refreshSessionToken(refreshSessionToken);
+
+  /// Getter for indicative search
+  Future<dynamic> indicativeSearch(IndicativeSearchEntity entity) async =>
+      await _scannerManager?.indicativeSearch(entity);
+
+/// Returns a Map of geographical locations in a language determined by the given [locale].
   Future<Map<String, dynamic>?> getGeoFlights(String locale) async =>
       await _scannerManager?.getGeoFlights(locale);
 
