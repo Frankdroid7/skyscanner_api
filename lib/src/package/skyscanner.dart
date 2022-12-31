@@ -1,7 +1,9 @@
 import 'package:skyscanner_api/src/api/culture/model/model_exports.dart';
 import 'package:skyscanner_api/src/api/culture/model/response/currency.dart';
 import 'package:skyscanner_api/src/api/culture/model/response/locale.dart';
+import 'package:skyscanner_api/src/api/flight/live/model/flight_live_prices_create_response/flight_live_prices_create_response.dart';
 
+import '../api/flight/live/entity/flight_live_prices_create_entity/flight_live_prices_create_entity.dart';
 import '../common/common_export.dart';
 import '../manager/manager_exports.dart';
 
@@ -56,4 +58,9 @@ class SkyScannerApi {
   /// Getter for fetching of markets
   Future<MarketResponse?> getMarkets(String locale) async =>
       await _scannerManager?.getMarkets(locale);
+
+  /// Getter for creating of live flight
+  Future<FlightLivePricesCreateResponse?> createSearchLiveFlight(
+          FlightLivePricesCreateEntity entity) async =>
+      await _scannerManager?.createSearchLiveFlight(entity);
 }
