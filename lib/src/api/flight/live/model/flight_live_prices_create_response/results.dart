@@ -7,12 +7,29 @@ import 'places.dart';
 import 'segments.dart';
 
 class Results {
+  /// Bookable itinerary which corresponds with what was requested in the search.
+  /// A return trip will consist of 2 legs, while a one-way trip will consist of 1 leg.
+  /// An itinerary will contain a deepLink field which takes the traveler to the booking page.
   Itineraries? itineraries;
+
+  /// Includes details about the flight leg from destination to origin.
+  /// A leg has 1 segment if it is a direct flight, and can have multiple segments if there are multiple stopovers.
   Legs? legs;
+
+  /// Shows the individual stops in a leg.
+  /// I.e.: if a leg has 1 stop, the segment will show details about the stopover such as the length of time and where the stopover location is.
   Segments? segments;
+
+  /// Shows the individual stops in a leg.
+  /// I.e.: if a leg has 1 stop, the segment will show details about the stopover such as the length of time and where the stopover location is.
   Places? places;
+
+  /// Similar to places, carriers contains information about the airlines referenced in itineraries.
   Carriers? carriers;
+
+  /// Similar to places, agents contains information about the OTAs referenced in itineraries.
   Agents? agents;
+
   Alliances? alliances;
 
   Results({

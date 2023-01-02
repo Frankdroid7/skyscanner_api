@@ -4,8 +4,8 @@ import 'package:skyscanner_api/src/api/culture/model/response/nearest_culture.da
 import 'package:skyscanner_api/src/api/culture/service/contracts/culture_contract.dart';
 import 'package:skyscanner_api/src/network/network_exports.dart';
 
-import '../../../../skyscanner_export.dart';
-import '../model/response/locale.dart';
+import '../../../../../skyscanner_export.dart';
+import '../../model/response/locale.dart';
 
 /// Contract implementations of Culture APIs
 class CultureContractImpl extends CultureContract {

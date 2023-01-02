@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:skyscanner_api/src/api/geo/service/contracts/geo_contract.dart';
 
-import '../../../network/network_exports.dart';
-import '../entity/nearest_flights_entity.dart';
+import '../../../../network/network_exports.dart';
+import '../../entity/nearest_flight_entity.dart';
 
 /// Contract implementations for Geo APIs
 class GeoContractImpl extends GeoContract {
@@ -19,7 +19,7 @@ class GeoContractImpl extends GeoContract {
 
   @override
   Future<Map<String, dynamic>> getGeoNearestFlights(
-      NearestFlight nearestFlight) async {
+      NearestFlightEntity nearestFlight) async {
     try {
       Response response = await request(
         path: ApiPath.geoNearestFlights,

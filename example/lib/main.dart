@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:skyscanner_api/skyscanner_export.dart';
+import 'package:skyscanner_api/src/api/autosuggest/autosuggest_exports.dart';
 
 void main() {
   runApp(const MyApp());
@@ -40,23 +41,11 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _test() async {
     try {
-      final response = await _scannerApi.indicativeSearch(
-          IndicativeSearchEntity(
-              query: MQuery(
-                  currency: 'GBP',
-                  locale: 'en-GB',
-                  market: 'UK',
-                  dateTimeGroupingType: 'DATE_TIME_GROUPING_TYPE_BY_MONTH',
-                  queryLegs: [
-            MQueryLeg(
-                originPlace:
-                    OriginPlace(queryPlace: QueryPlace(entityId: '27544008')),
-                destinationPlace: DestinationPlace(
-                    queryPlace: QueryPlace(entityId: '27539733')),
-                dateRange: DateRange(
-                    startDate: StartDate(year: 2022, month: 11),
-                    endDate: EndDate(year: 2023, month: 4)))
-          ])));
+      final response = await _scannerApi.getCarHire(
+        carHireEntity: CarHireEntity(
+            query: CarHireQuery(
+                market: 'NG', locale: 'en-GB', searchTerm: 'Nigeria')),
+      );
       _data = response?.toString() ?? '';
     } catch (e) {
       _data = e.toString();

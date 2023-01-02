@@ -2,8 +2,14 @@ import 'content.dart';
 
 class FlightLivePricesCreateResponse {
   String? sessionToken;
+
+  /// Indicates status of the search request is running or completed
   String? status;
+
+  /// Indicates how to treat the SearchResults contained in a SearchContent.
+  /// Prior results should only be replaced if the action is explicitly RESULT_ACTION_REPLACED.
   String? action;
+
   Content? content;
 
   FlightLivePricesCreateResponse(
