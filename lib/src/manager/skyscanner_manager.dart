@@ -1,7 +1,4 @@
 import 'package:skyscanner_api/src/api/autosuggest/autosuggest_exports.dart';
-import 'package:skyscanner_api/src/api/autosuggest/entity/autosuggest_flight_entity.dart';
-import 'package:skyscanner_api/src/api/autosuggest/entity/carhire_entity.dart';
-import 'package:skyscanner_api/src/api/autosuggest/entity/hotel_entity.dart';
 import 'package:skyscanner_api/src/api/autosuggest/service/contract/autosuggest_contract_impl.dart';
 import 'package:skyscanner_api/src/api/carriers/service/contracts/carriers_contract_impl.dart';
 import 'package:skyscanner_api/src/api/culture/model/response/currency.dart';
@@ -9,7 +6,6 @@ import 'package:skyscanner_api/src/api/culture/model/response/locale.dart';
 import 'package:skyscanner_api/src/api/culture/model/response/nearest_culture.dart';
 import 'package:skyscanner_api/src/api/culture/service/contracts/culture_contract_impl.dart';
 import 'package:skyscanner_api/src/api/geo/service/contracts/geo_contract_impl.dart';
-
 import '../../skyscanner_export.dart';
 import '../api/flight/indicative/contract/indicative_search_contract_impl.dart';
 import '../api/flight/live/contract/flight_live_contract_impl.dart';
@@ -19,6 +15,7 @@ import '../api/referral/contracts/referal_contract_impl.dart';
 mixin ContractImplMixin {
   final FlightLiveContractImpl _flightLiveContractImpl =
       FlightLiveContractImpl();
+
   final GeoContractImpl _geoContractImpl = GeoContractImpl();
   final IndicativeSearchContractImpl _indicativeSearchContractImpl =
       IndicativeSearchContractImpl();
