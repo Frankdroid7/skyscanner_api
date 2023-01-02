@@ -1,9 +1,9 @@
-class NearestFlight {
+class NearestFlightEntity {
   String locale;
 
-  Locator locator;
+  LocatorEntity locator;
 
-  NearestFlight({required this.locale, required this.locator});
+  NearestFlightEntity({required this.locale, required this.locator});
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
@@ -13,13 +13,13 @@ class NearestFlight {
   }
 }
 
-/// When using the [Locator] class, pass in either [coordinates] or [ipAddress] but not both.
+/// When using the [LocatorEntity] class, pass in either [coordinates] or [ipAddress] but not both.
 
-class Locator {
+class LocatorEntity {
   Coordinates? coordinates;
   String? ipAddress;
 
-  Locator({this.coordinates, this.ipAddress});
+  LocatorEntity({this.coordinates, this.ipAddress});
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
