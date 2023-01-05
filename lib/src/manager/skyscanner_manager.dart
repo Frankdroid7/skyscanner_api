@@ -10,6 +10,7 @@ import '../../skyscanner_export.dart';
 import '../api/flight/indicative/contract/indicative_search_contract_impl.dart';
 import '../api/flight/live/contract/flight_live_contract_impl.dart';
 import '../api/flight/live/model/flight_live_prices_create_response/flight_live_prices_create_response.dart';
+import '../api/geo/model/geo_flight_response.dart';
 import '../api/referral/contracts/referal_contract_impl.dart';
 
 mixin ContractImplMixin {
@@ -40,7 +41,7 @@ class SkyScannerManager with ContractImplMixin {
   }
 
   /// Fetch the available geo flights
-  Future<Map<String, dynamic>> getGeoFlights(String locale) async {
+  Future<GeoFlightResponse> getGeoFlights(String locale) async {
     try {
       return await _geoContractImpl.getGeoFlights(locale);
     } catch (e) {
