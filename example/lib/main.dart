@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:skyscanner_api/skyscanner_export.dart';
-import 'package:skyscanner_api/src/api/autosuggest/autosuggest_exports.dart';
 
 void main() {
   runApp(const MyApp());
@@ -41,12 +40,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _test() async {
     try {
-      final response = await _scannerApi.getCarHire(
-        carHireEntity: CarHireEntity(
-            query: CarHireQuery(
-                market: 'NG', locale: 'en-GB', searchTerm: 'Nigeria')),
-      );
-      _data = response?.toString() ?? '';
+      final response = await _scannerApi.getGeoFlights('en-GB');
+      _data = response?.places?.first.name;
     } catch (e) {
       _data = e.toString();
     }
