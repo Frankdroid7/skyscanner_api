@@ -36,7 +36,6 @@ Includes details about the flight leg from destination to origin. A leg has 1 se
 Shows the individual stops in a  `leg`. I.e.: if a  `leg`  has 1 stop, the  `segment`  will show details about the stopover such as the length of time and where the stopover location is.
 
 `Places`
-
 Shows the individual stops in a  `leg`. I.e.: if a  `leg`  has 1 stop, the  `segment`  will show details about the stopover such as the length of time and where the stopover location is.
 
 `Carriers`
