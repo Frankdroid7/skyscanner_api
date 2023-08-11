@@ -1,16 +1,16 @@
 class HotelEntity {
   /// Object containing parameters for flights autosuggest search.
-  HotelQuery query;
+  HotelQuery? query;
 
   /// Limits number of entities returned in response. Take a min value of 1 and max of 50.
   int? limit;
 
-  HotelEntity({required this.query, this.limit});
+  HotelEntity({this.query, this.limit});
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
 
-    data['query'] = query.toJson();
+    data['query'] = query?.toJson();
     data['limit'] = limit;
     return data;
   }

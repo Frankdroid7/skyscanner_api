@@ -1,14 +1,13 @@
 class NearestFlightEntity {
-  String locale;
+  String? locale;
+  LocatorEntity? locator;
 
-  LocatorEntity locator;
-
-  NearestFlightEntity({required this.locale, required this.locator});
+  NearestFlightEntity({this.locale, this.locator});
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['locale'] = locale;
-    data['locator'] = locator.toJson();
+    data['locator'] = locator?.toJson();
     return data;
   }
 }

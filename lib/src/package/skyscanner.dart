@@ -1,8 +1,4 @@
 import 'package:skyscanner_api/skyscanner_export.dart';
-import 'package:skyscanner_api/src/api/autosuggest/autosuggest_exports.dart';
-import 'package:skyscanner_api/src/api/autosuggest/entity/autosuggest_flight_entity.dart';
-import 'package:skyscanner_api/src/api/autosuggest/entity/carhire_entity.dart';
-import 'package:skyscanner_api/src/api/autosuggest/entity/hotel_entity.dart';
 import 'package:skyscanner_api/src/api/culture/model/response/currency.dart';
 import 'package:skyscanner_api/src/api/culture/model/response/locale.dart';
 import 'package:skyscanner_api/src/api/culture/model/response/nearest_culture.dart';
@@ -19,9 +15,7 @@ class SkyScannerApi {
   static final SkyScannerApi _singleton = SkyScannerApi.createInstance();
   SkyScannerApi.createInstance();
 
-  factory SkyScannerApi() {
-    return _singleton;
-  }
+  factory SkyScannerApi() => _singleton;
 
   /// Getter for ApiKey
   String get apiKey => _apiKey;
@@ -31,12 +25,14 @@ class SkyScannerApi {
   /// [apiKey] - your SkyScanner Api key. This is mandatory.
   Future<void> initializeApiKey({required String apiKey}) async {
     assert(() {
-      if (apiKey.isEmpty) {
-        throw SkyScannerException('apiKey cannot be null or empty');
-      }
-      if (!apiKey.startsWith("prt") || apiKey.length != 32) {
+      if (apiKey.isEmpty || apiKey.length < 32) {
         throw AuthenticationException(Utils.getApiKeyErrorMsg('ApiKey'));
       }
+
+      // if (!apiKey.startsWith("prt") || apiKey.length != 32) {
+      //   throw AuthenticationException(Utils.getApiKeyErrorMsg('ApiKey'));
+      // }
+
       return true;
     }());
 
@@ -47,9 +43,7 @@ class SkyScannerApi {
   }
 
   /// Resets the value of the api key to be empty
-  void dispose() {
-    _apiKey = "";
-  }
+  void dispose() => _apiKey = "";
 
   /*Carriers API methods*/
   /// Returns a Map of a full list of active carriers with name and IATA code indexed by their carrierId.
