@@ -108,21 +108,22 @@ class SkyScannerManager with ContractImplMixin {
   }
 
   /// Create a refresh itineraries
-  Future<dynamic> createItineraryRefresh(
-      String sessionToken, Map<String, dynamic> itineraryId) async {
+  Future<FlightLivePricesCreateResponse> createItineraryRefresh(
+      {required String sessionToken, required String itineraryId}) async {
     try {
       return await _flightLiveContractImpl.createItineraryRefresh(
-          sessionToken, itineraryId);
+          sessionToken: sessionToken, itineraryId: itineraryId);
     } catch (e) {
       throw Exception(e.toString());
     }
   }
 
   /// Refresh itineraries session token
-  Future<dynamic> refreshSessionToken(String refreshSessionToken) async {
+  Future<FlightLivePricesCreateResponse> refreshSessionToken(
+      {required String refreshSessionToken}) async {
     try {
-      return await _flightLiveContractImpl
-          .refreshSessionToken(refreshSessionToken);
+      return await _flightLiveContractImpl.pollItineraryRefresh(
+          refreshSessionToken: refreshSessionToken);
     } catch (e) {
       throw Exception(e.toString());
     }

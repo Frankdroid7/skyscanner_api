@@ -34,14 +34,26 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   void initState() {
-    _scannerApi.initializeApiKey(apiKey: 'prtl6749387986743898559646983194');
+    _scannerApi.initializeApiKey(apiKey: 'sh428739766321522266746152871799');
     super.initState();
   }
 
   void _test() async {
     try {
-      final response = await _scannerApi.getGeoFlights('en-GB');
-      _data = response?.places?.first.name;
+      final entity = IndicativeSearchEntity(
+        query: IndicativeSearchQuery(
+          market: 'UK',
+          locale: 'en-GB',
+          currency: 'NGN',
+          queryLegs: [IndicativeSearchQueryLeg()],
+        ),
+        alternativeParam: {},
+      );
+
+      final FlightLivePricesCreateResponse? response =
+          await _scannerApi.indicativeSearch(entity);
+
+      _data = response?.refreshSessionToken ?? 'NOT FOUND';
     } catch (e) {
       _data = e.toString();
     }

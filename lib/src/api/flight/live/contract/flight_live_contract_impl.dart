@@ -1,6 +1,7 @@
 import 'package:skyscanner_api/src/api/flight/live/entity/flight_live_prices_create_entity/flight_live_prices_create_entity.dart';
 import 'package:skyscanner_api/src/api/flight/live/model/flight_live_prices_create_response/flight_live_prices_create_response.dart';
 
+import '../../../../../skyscanner_export.dart';
 import '../../../../network/network_exports.dart';
 import 'flight_live_contract.dart';
 
@@ -33,27 +34,28 @@ class FlightLiveContractImpl extends FlightLiveContract {
   }
 
   @override
-  Future<dynamic> createItineraryRefresh(
-      String sessionToken, Map<String, dynamic> itineraryId) async {
+  Future<FlightLivePricesCreateResponse> createItineraryRefresh(
+      {required String sessionToken, required String itineraryId}) async {
     try {
       final response = await request(
           path: '${ApiPath.createItineraryRefresh}$sessionToken',
           method: RequestType.post,
-          data: itineraryId);
-      return response.data ?? {};
+          data: {"itineraryId": itineraryId});
+      return FlightLivePricesCreateResponse.fromJson(response.data);
     } catch (e) {
       rethrow;
     }
   }
 
   @override
-  Future refreshSessionToken(String refreshSessionToken) async {
+  Future<FlightLivePricesCreateResponse> pollItineraryRefresh(
+      {required String refreshSessionToken}) async {
     try {
       final response = await request(
           path:
               '${ApiPath.createItineraryRefreshSessionToken}$refreshSessionToken',
           method: RequestType.get);
-      return response.data ?? {};
+      return FlightLivePricesCreateResponse.fromJson(response.data);
     } catch (e) {
       rethrow;
     }

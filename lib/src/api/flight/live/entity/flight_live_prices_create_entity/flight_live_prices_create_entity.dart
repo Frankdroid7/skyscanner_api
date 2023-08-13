@@ -1,7 +1,7 @@
 import 'query.dart';
 
 /// An entity class for sending a request body
-/// use the [alternativeParam] parameter to send a request body fields
+/// use the [alternativeParam] parameter to send request body fields
 /// that is not included in the original entity model
 class FlightLivePricesCreateEntity {
   Query? query;

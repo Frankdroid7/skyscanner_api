@@ -4,7 +4,7 @@ import 'mquery.dart';
 /// use the [alternativeParam] parameter to send a request body fields
 /// that is not included in the original entity model
 class IndicativeSearchEntity {
-  MQuery? query;
+  IndicativeSearchQuery? query;
   Map<String, dynamic>? alternativeParam;
 
   IndicativeSearchEntity({this.query, this.alternativeParam});
@@ -13,7 +13,8 @@ class IndicativeSearchEntity {
     return IndicativeSearchEntity(
       query: json['query'] == null
           ? null
-          : MQuery.fromJson(json['query'] as Map<String, dynamic>),
+          : IndicativeSearchQuery.fromJson(
+              json['query'] as Map<String, dynamic>),
     );
   }
 

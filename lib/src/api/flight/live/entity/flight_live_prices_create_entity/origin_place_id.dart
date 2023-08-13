@@ -1,13 +1,13 @@
 class OriginPlaceId {
-  String? iata;
+  String iataOrEntityId;
 
-  OriginPlaceId({this.iata});
+  OriginPlaceId({required this.iataOrEntityId});
 
   factory OriginPlaceId.fromJson(Map<String, dynamic> json) => OriginPlaceId(
-        iata: json['iata'] as String?,
+        iataOrEntityId: json['iata'],
       );
 
   Map<String, dynamic> toJson() => {
-        'iata': iata,
+        'iata': iataOrEntityId,
       };
 }
