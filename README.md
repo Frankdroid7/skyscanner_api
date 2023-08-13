@@ -1,3 +1,4 @@
+
 # skyscanner_api
 
 An unofficial sky_scanner api package that allow developers easily integrate the Sky scanner API to their Flutter app.
@@ -46,22 +47,54 @@ Similar to  `places`,  `agents`  contains information about the OTAs referenced 
 
 Here is a sample code to call the method:
 ```Dart
-try {
-      final entity = FlightLivePricesCreateEntity(
-        query: Query(
-          currency: 'NGN',
-          locale: 'en-GB',
-          adults: 1,
-          cabinClass: 'economy',
-        ),
-        alternativeParam: {},
-      );
-
-      FlightLivePricesCreateResponse? response =
-          await _scannerApi.createSearchLiveFlight(entity);
-
-      print('Response: ${response?.content?.results?.places}');
-    } catch (error) {
-      print(error);
-    }
+try {  
+  final entity = FlightLivePricesCreateEntity(  
+    query: Query(  
+      adults: 1,  
+	  market: 'UK',  
+	  locale: 'en-GB',  
+	  currency: 'NGN',  
+	  cabinClass: CabinClass.CABIN_CLASS_FIRST,
+	  queryLegs: [  
+        QueryLeg(  
+          date: SkyScannerDate(  
+            year: 2023,  
+			month: 08,  
+			day: 23,  
+	      ),  
+	  originPlaceId: OriginPlaceId(iataOrEntityId: 'LHR'),  
+	  destinationPlaceId: DestinationPlaceId(iataOrEntityId: 'EDI'),  
+	  )  
+    ],  
+  ),  
+  alternativeParam: {},  
+  );  
+  
+ final response = await _scannerApi.createSearchLiveFlight(entity);  
+ print(response);  
+} catch (e) {  
+   print(e.toString());
+}
+ 
 ```
+
+You can get the `market`, `locale` and `currency` by using the `getNearestCulture()` method and passing in the user's IP address like so:
+
+```Dart
+final NearestCulture = await _scannerApi.getNearestCulture('198.0.2.0');
+
+print('Market: ${response?.market?.code}');  
+print('Locale: ${response?.locale?.code}');  
+print('Currency: ${response?.currency?.code}');
+```
+You can get the IATA from this webpage: https://www.iata.org/en/publications/directories/code-search/
+OR
+You can get the `iataOrEntityId` through the `getGeoFlights()` passing in the user's `locale` like so:
+```dart
+final response = await _scannerApi.getGeoFlights('en-GB');  
+print(response?.places?.first.iata);
+print(response?.places?.first.entityId);
+```
+
+
+
