@@ -3,7 +3,7 @@ import 'package:skyscanner_api/src/api/flight/live/entity/flight_live_prices_cre
 import '../../../../network/network_exports.dart';
 import '../model/flight_live_prices_create_response/flight_live_prices_create_response.dart';
 
-abstract class FlightLiveContract extends NetworkService{
+abstract class FlightLiveContract extends NetworkService {
   Future<FlightLivePricesCreateResponse> createLiveFlight(
       FlightLivePricesCreateEntity entity);
 
