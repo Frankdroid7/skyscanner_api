@@ -13,6 +13,8 @@ You can proceed to import it with this:
 ```
 
 Next, you must **initialise** your API key before calling any other available methods.
+You can get a Skyscanner API key from here: https://developers.skyscanner.net/docs/getting-started/authentication
+
 Initialise your **apiKey** like so:
 ```Dart
   final _scannerApi = SkyScannerApi()..initializeApiKey(apiKey: 'apiKey');
