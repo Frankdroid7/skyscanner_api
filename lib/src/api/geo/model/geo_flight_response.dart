@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:skyscanner_api/src/common/common_export.dart';
 
 class GeoFlightResponse {

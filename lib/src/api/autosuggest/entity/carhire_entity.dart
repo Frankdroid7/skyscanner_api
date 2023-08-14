@@ -1,11 +1,11 @@
 class CarHireEntity {
-  CarHireQuery query;
+  CarHireQuery? query;
 
-  CarHireEntity({required this.query});
+  CarHireEntity({this.query});
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['query'] = query.toJson();
+    data['query'] = query?.toJson();
     return data;
   }
 }

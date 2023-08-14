@@ -1,4 +1,3 @@
-import 'package:skyscanner_api/src/api/autosuggest/autosuggest_exports.dart';
 import 'package:skyscanner_api/src/api/autosuggest/service/contract/autosuggest_contract_impl.dart';
 import 'package:skyscanner_api/src/api/carriers/service/contracts/carriers_contract_impl.dart';
 import 'package:skyscanner_api/src/api/culture/model/response/currency.dart';

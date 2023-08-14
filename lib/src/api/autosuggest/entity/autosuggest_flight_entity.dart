@@ -1,6 +1,6 @@
 class AutosuggestFlightEntity {
   /// Object containing parameters for flights autosuggest search.
-  AutosuggestFlightQuery query;
+  AutosuggestFlightQuery? query;
 
   /// Alters ranking logic of entities. Defaults to false if not sent.
   bool? isDestination;
@@ -8,12 +8,11 @@ class AutosuggestFlightEntity {
   /// Limits number of entities returned in response. Take a min value of 1 and max of 50.
   int? limit;
 
-  AutosuggestFlightEntity(
-      {required this.query, this.isDestination, this.limit});
+  AutosuggestFlightEntity({this.query, this.isDestination, this.limit});
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['query'] = query.toJson();
+    data['query'] = query?.toJson();
     data['isDestination'] = isDestination ?? false;
     data['limit'] = limit;
     return data;
