@@ -1,7 +1,7 @@
 class ReferralEntity {
   final dynamic mediaPartnerId;
   final dynamic campaignId;
-  final String? utm_term;
+  final String? utmTerm;
   final String? market;
   final String? currency;
   final String? locale;
@@ -19,7 +19,7 @@ class ReferralEntity {
       {this.mediaPartnerId,
       this.campaignId,
       this.adId,
-      this.utm_term,
+      this.utmTerm,
       this.market,
       this.currency,
       this.locale,
@@ -37,8 +37,8 @@ class ReferralEntity {
 
     result.addAll({'mediaPartnerId': mediaPartnerId});
     result.addAll({'campaignId': campaignId});
-    if (utm_term != null) {
-      result.addAll({'utm_term': utm_term});
+    if (utmTerm != null) {
+      result.addAll({'utm_term': utmTerm});
     }
     if (market != null) {
       result.addAll({'market': market});

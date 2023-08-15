@@ -5,7 +5,6 @@ import 'package:skyscanner_api/skyscanner_export.dart';
 import 'package:skyscanner_api/src/api/culture/culture_exports.dart';
 import 'package:skyscanner_api/src/api/culture/model/response/currency.dart';
 import 'package:skyscanner_api/src/api/culture/model/response/locale.dart';
-import 'package:skyscanner_api/src/api/flight/live/model/flight_live_prices_create_response/flight_live_prices_create_response.dart';
 import 'package:skyscanner_api/src/api/geo/model/geo_flight_response.dart';
 
 import 'skyscanner_test.mocks.dart';
