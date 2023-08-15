@@ -2,14 +2,16 @@ import 'date_range.dart';
 import 'destination_place.dart';
 import 'origin_place.dart';
 
-class MQueryLeg {
+class IndicativeSearchQueryLeg {
   OriginPlace? originPlace;
   DestinationPlace? destinationPlace;
   DateRange? dateRange;
 
-  MQueryLeg({this.originPlace, this.destinationPlace, this.dateRange});
+  IndicativeSearchQueryLeg(
+      {this.originPlace, this.destinationPlace, this.dateRange});
 
-  factory MQueryLeg.fromJson(Map<String, dynamic> json) => MQueryLeg(
+  factory IndicativeSearchQueryLeg.fromJson(Map<String, dynamic> json) =>
+      IndicativeSearchQueryLeg(
         originPlace: json['originPlace'] == null
             ? null
             : OriginPlace.fromJson(json['originPlace'] as Map<String, dynamic>),

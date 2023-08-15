@@ -1,7 +1,5 @@
-import 'package:skyscanner_api/src/api/flight/live/entity/flight_live_prices_create_entity/flight_live_prices_create_entity.dart';
-
+import '../../../../../skyscanner_export.dart';
 import '../../../../network/network_exports.dart';
-import '../model/flight_live_prices_create_response/flight_live_prices_create_response.dart';
 
 abstract class FlightLiveContract extends NetworkService {
   Future<FlightLivePricesCreateResponse> createLiveFlight(
@@ -10,8 +8,9 @@ abstract class FlightLiveContract extends NetworkService {
   Future<FlightLivePricesCreateResponse> createLiveSearchPoll(
       String sessionToken);
 
-  Future<dynamic> createItineraryRefresh(
-      String sessionToken, Map<String, dynamic> itineraryId);
+  Future<FlightLivePricesCreateResponse> createItineraryRefresh(
+      {required String sessionToken, required String itineraryId});
 
-  Future<dynamic> refreshSessionToken(String refreshSessionToken);
+  Future<FlightLivePricesCreateResponse> pollItineraryRefresh(
+      {required String refreshSessionToken});
 }

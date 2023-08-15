@@ -28,11 +28,6 @@ class SkyScannerApi {
       if (apiKey.isEmpty || apiKey.length < 32) {
         throw AuthenticationException(Utils.getApiKeyErrorMsg('ApiKey'));
       }
-
-      // if (!apiKey.startsWith("prt") || apiKey.length != 32) {
-      //   throw AuthenticationException(Utils.getApiKeyErrorMsg('ApiKey'));
-      // }
-
       return true;
     }());
 
@@ -63,7 +58,7 @@ class SkyScannerApi {
       await _scannerManager?.getFlightsDayView(entity: entity);
 
   /*Flights Live API methods*/
-  /// Getter for search of live poll flight
+  /// Method to get more results from a live flight search
   Future<FlightLivePricesCreateResponse?> createLiveSearchPoll(
           String sessionToken) async =>
       await _scannerManager?.createLiveSearchPoll(sessionToken);
@@ -73,14 +68,17 @@ class SkyScannerApi {
           FlightLivePricesCreateEntity entity) async =>
       await _scannerManager?.createSearchLiveFlight(entity);
 
-  /// Getter for creating itinary refresh
-  Future<dynamic> createItineraryRefresh(
-          String sessionToken, Map<String, dynamic> itineraryId) async =>
-      await _scannerManager?.createItineraryRefresh(sessionToken, itineraryId);
+  /// Getter for creating itinerary refresh
+  Future<FlightLivePricesCreateResponse?> createItineraryRefresh(
+          {required String sessionToken, required String itineraryId}) async =>
+      await _scannerManager?.createItineraryRefresh(
+          sessionToken: sessionToken, itineraryId: itineraryId);
 
-  /// Getter for creating itinary refresh
-  Future<dynamic> refreshSessionToken(String refreshSessionToken) async =>
-      await _scannerManager?.refreshSessionToken(refreshSessionToken);
+  /// Getter for creating itinerary refresh through poll (to get more result)
+  Future<FlightLivePricesCreateResponse?> pollItineraryRefresh(
+          {required String refreshSessionToken}) async =>
+      await _scannerManager?.refreshSessionToken(
+          refreshSessionToken: refreshSessionToken);
 
   /*Flights Indicative API methods*/
   /// Getter for indicative search

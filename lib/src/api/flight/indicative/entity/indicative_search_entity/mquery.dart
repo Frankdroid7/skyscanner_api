@@ -1,26 +1,28 @@
 import 'mquery_leg.dart';
 
-class MQuery {
+class IndicativeSearchQuery {
   String? currency;
   String? locale;
   String? market;
   String? dateTimeGroupingType;
-  List<MQueryLeg>? queryLegs;
+  List<IndicativeSearchQueryLeg>? queryLegs;
 
-  MQuery(
+  IndicativeSearchQuery(
       {this.currency,
       this.locale,
       this.market,
       this.dateTimeGroupingType,
       this.queryLegs});
 
-  factory MQuery.fromJson(Map<String, dynamic> json) => MQuery(
+  factory IndicativeSearchQuery.fromJson(Map<String, dynamic> json) =>
+      IndicativeSearchQuery(
         currency: json['currency'] as String?,
         locale: json['locale'] as String?,
         market: json['market'] as String?,
         dateTimeGroupingType: json['dateTimeGroupingType'] as String?,
         queryLegs: (json['queryLegs'] as List<dynamic>?)
-            ?.map((e) => MQueryLeg.fromJson(e as Map<String, dynamic>))
+            ?.map((e) =>
+                IndicativeSearchQueryLeg.fromJson(e as Map<String, dynamic>))
             .toList(),
       );
 

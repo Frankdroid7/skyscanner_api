@@ -46,7 +46,7 @@ class CultureContractImpl extends CultureContract {
   Future<NearestCulture> getNearestCulture(String ipAddress) async {
     try {
       Response response = await request(
-        path: ApiPath.cultureCurrencies,
+        path: ApiPath.nearestCulture,
         method: RequestType.get,
         queryParams: {'ipAddress': ipAddress},
       );

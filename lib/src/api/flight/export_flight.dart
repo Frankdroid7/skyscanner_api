@@ -26,3 +26,5 @@ export '../flight/indicative/entity/indicative_search_entity/query_place.dart';
 export 'indicative/entity/indicative_search_entity/mquery.dart';
 export '../flight/indicative/entity/indicative_search_entity/start_date.dart';
 export '../referral/entity/referral_entity.dart';
+export '../flight/live/entity/flight_live_prices_create_entity/cabin_class_enum.dart';
+export '../flight/live/model/flight_live_prices_create_response/flight_live_prices_create_response.dart';

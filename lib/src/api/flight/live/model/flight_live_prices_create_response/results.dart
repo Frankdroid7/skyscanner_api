@@ -30,6 +30,7 @@ class Results {
   /// Similar to places, agents contains information about the OTAs referenced in itineraries.
   Agents? agents;
 
+  /// List of alliance names
   Alliances? alliances;
 
   Results({
