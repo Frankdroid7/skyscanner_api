@@ -229,83 +229,99 @@ void main() async {
 
     test('Test for createItineraryRefresh() function', () async {
       /// Trigger createItineraryRefresh() function Once
-      await mockScannerApi.createItineraryRefresh('', {});
+      await mockScannerApi.createItineraryRefresh(
+          sessionToken: '', itineraryId: '');
 
       /// Ensure createItineraryRefresh() function is called once
-      verify(mockScannerApi.createItineraryRefresh('', {})).called(1);
+      verify(mockScannerApi.createItineraryRefresh(
+              sessionToken: '', itineraryId: ''))
+          .called(1);
 
       /// Stub createItineraryRefresh() function is successful
-      when(mockScannerApi.createItineraryRefresh('', {}))
-          .thenAnswer((_) async => Future.value(dynamic));
+      when(mockScannerApi.createItineraryRefresh(
+              sessionToken: '', itineraryId: ''))
+          .thenAnswer(
+              (_) async => Future.value(FlightLivePricesCreateResponse()));
 
       /// Make call to createItineraryRefresh()
-      dynamic createItineraryResponse =
-          await mockScannerApi.createItineraryRefresh('', {});
+      dynamic createItineraryResponse = await mockScannerApi
+          .createItineraryRefresh(sessionToken: '', itineraryId: '');
 
       /// Ensure the response from the mocked call is a dynamic response
-      expect(createItineraryResponse, isInstanceOf<dynamic>());
+      expect(createItineraryResponse,
+          isInstanceOf<FlightLivePricesCreateResponse>());
 
       /// Stub createLiveSearchPoll() function is failed
-      when(mockScannerApi.createItineraryRefresh('', {}))
+      when(mockScannerApi.createItineraryRefresh(
+              sessionToken: '', itineraryId: ''))
           .thenAnswer((_) async => Future.value(null));
 
       /// Make call to createItineraryRefresh()
-      createItineraryResponse =
-          await mockScannerApi.createItineraryRefresh('', {});
+      createItineraryResponse = await mockScannerApi.createItineraryRefresh(
+          sessionToken: '', itineraryId: '');
 
       /// Ensure the response from the mocked call failed and returned a null value
       expect(createItineraryResponse, null);
 
       /// Stub for when an argument is passed
       /// Ensure the named argument is accurate as well as the instance been passed is not null
-      when(mockScannerApi.createItineraryRefresh('', {}))
-          .thenAnswer((_) async => Future.value(dynamic));
+      when(mockScannerApi.createItineraryRefresh(
+              sessionToken: '', itineraryId: ''))
+          .thenAnswer(
+              (_) async => Future.value(FlightLivePricesCreateResponse()));
 
       /// Make call to createItineraryRefresh('')
-      createItineraryResponse =
-          await mockScannerApi.createItineraryRefresh('', {});
+      createItineraryResponse = await mockScannerApi.createItineraryRefresh(
+          sessionToken: '', itineraryId: '');
 
       /// Ensure the response from the mocked call is dynamic
-      expect(createItineraryResponse, isInstanceOf<dynamic>());
+      expect(createItineraryResponse,
+          isInstanceOf<FlightLivePricesCreateResponse>());
     });
 
     test('Test for refreshSessionToken() function', () async {
       /// Trigger refreshSessionToken() function Once
-      await mockScannerApi.refreshSessionToken('');
+      await mockScannerApi.pollItineraryRefresh(refreshSessionToken: '');
 
       /// Ensure refreshSessionToken() function is called once
-      verify(mockScannerApi.refreshSessionToken('')).called(1);
+      verify(mockScannerApi.pollItineraryRefresh(refreshSessionToken: ''))
+          .called(1);
 
       /// Stub refreshSessionToken() function is successful
-      when(mockScannerApi.refreshSessionToken(''))
-          .thenAnswer((_) async => Future.value(dynamic));
+      when(mockScannerApi.pollItineraryRefresh(refreshSessionToken: ''))
+          .thenAnswer(
+              (_) async => Future.value(FlightLivePricesCreateResponse()));
 
       /// Make call to refreshSessionToken()
-      dynamic refreshToken = await mockScannerApi.refreshSessionToken('');
+      dynamic refreshToken =
+          await mockScannerApi.pollItineraryRefresh(refreshSessionToken: '');
 
       /// Ensure the response from the mocked call is a dynamic response
-      expect(refreshToken, isInstanceOf<dynamic>());
+      expect(refreshToken, isInstanceOf<FlightLivePricesCreateResponse>());
 
       /// Stub refreshSessionToken() function is failed
-      when(mockScannerApi.refreshSessionToken(''))
+      when(mockScannerApi.pollItineraryRefresh(refreshSessionToken: ''))
           .thenAnswer((_) async => Future.value(null));
 
       /// Make call to refreshSessionToken()
-      refreshToken = await mockScannerApi.refreshSessionToken('');
+      refreshToken =
+          await mockScannerApi.pollItineraryRefresh(refreshSessionToken: '');
 
       /// Ensure the response from the mocked call failed and returned a null value
       expect(refreshToken, null);
 
       /// Stub for when an argument is passed
       /// Ensure the named argument is accurate as well as the instance been passed is not null
-      when(mockScannerApi.createItineraryRefresh('', {}))
-          .thenAnswer((_) async => Future.value(dynamic));
+      when(mockScannerApi.pollItineraryRefresh(refreshSessionToken: ''))
+          .thenAnswer(
+              (_) async => Future.value(FlightLivePricesCreateResponse()));
 
       /// Make call to refreshSessionToken('')
-      refreshToken = await mockScannerApi.refreshSessionToken('');
+      refreshToken =
+          await mockScannerApi.pollItineraryRefresh(refreshSessionToken: '');
 
-      /// Ensure the response from the mocked call is dynamic
-      expect(refreshToken, isInstanceOf<dynamic>());
+      /// Ensure the response from the mocked call is FlightLivePricesCreateResponse
+      expect(refreshToken, isInstanceOf<FlightLivePricesCreateResponse>());
     });
 
     test('Test for getAutosuggestFlight() function', () async {
