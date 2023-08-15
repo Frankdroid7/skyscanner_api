@@ -1,6 +1,3 @@
-import 'package:skyscanner_api/src/api/flight/live/entity/flight_live_prices_create_entity/flight_live_prices_create_entity.dart';
-import 'package:skyscanner_api/src/api/flight/live/model/flight_live_prices_create_response/flight_live_prices_create_response.dart';
-
 import '../../../../../skyscanner_export.dart';
 import '../../../../network/network_exports.dart';
 import 'flight_live_contract.dart';

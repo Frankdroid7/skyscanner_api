@@ -5,10 +5,10 @@ import 'package:skyscanner_api/src/api/culture/model/response/locale.dart';
 import 'package:skyscanner_api/src/api/culture/model/response/nearest_culture.dart';
 import 'package:skyscanner_api/src/api/culture/service/contracts/culture_contract_impl.dart';
 import 'package:skyscanner_api/src/api/geo/service/contracts/geo_contract_impl.dart';
+
 import '../../skyscanner_export.dart';
 import '../api/flight/indicative/contract/indicative_search_contract_impl.dart';
 import '../api/flight/live/contract/flight_live_contract_impl.dart';
-import '../api/flight/live/model/flight_live_prices_create_response/flight_live_prices_create_response.dart';
 import '../api/geo/model/geo_flight_response.dart';
 import '../api/referral/contracts/referal_contract_impl.dart';
 
