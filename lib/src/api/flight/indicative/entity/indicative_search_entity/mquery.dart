@@ -5,14 +5,15 @@ class IndicativeSearchQuery {
   String? locale;
   String? market;
   String? dateTimeGroupingType;
-  List<IndicativeSearchQueryLeg>? queryLegs;
+  List<IndicativeSearchQueryLeg> queryLegs;
 
   IndicativeSearchQuery(
       {this.currency,
       this.locale,
       this.market,
       this.dateTimeGroupingType,
-      this.queryLegs});
+      required this.queryLegs})
+      : assert(queryLegs.isNotEmpty);
 
   factory IndicativeSearchQuery.fromJson(Map<String, dynamic> json) =>
       IndicativeSearchQuery(
@@ -20,8 +21,8 @@ class IndicativeSearchQuery {
         locale: json['locale'] as String?,
         market: json['market'] as String?,
         dateTimeGroupingType: json['dateTimeGroupingType'] as String?,
-        queryLegs: (json['queryLegs'] as List<dynamic>?)
-            ?.map((e) =>
+        queryLegs: (json['queryLegs'] as List<dynamic>)
+            .map((e) =>
                 IndicativeSearchQueryLeg.fromJson(e as Map<String, dynamic>))
             .toList(),
       );

@@ -34,7 +34,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   void initState() {
-    _scannerApi.initializeApiKey(apiKey: '');
+    _scannerApi.initializeApiKey(apiKey: 'sh428739766321522266746152871799');
     super.initState();
   }
 
@@ -45,7 +45,7 @@ class _MyHomePageState extends State<MyHomePage> {
           market: 'UK',
           locale: 'en-GB',
           currency: 'NGN',
-          queryLegs: [IndicativeSearchQueryLeg()],
+          queryLegs: [],
         ),
         alternativeParam: {},
       );
