@@ -17,7 +17,7 @@ You can get a Skyscanner API key from here: https://developers.skyscanner.net/do
 
 Initialise your **apiKey** like so:
 ```Dart
-  final _scannerApi = SkyScannerApi()..initializeApiKey(apiKey: 'apiKey');
+  final _scannerApi = SkyScannerApi().initializeApiKey(apiKey: 'apiKey');
 ```
 
 ## Flight Live Prices API
@@ -84,17 +84,14 @@ try {
   );  
   
  final FlightLivePricesCreateResponse? response = await _scannerApi.createSearchLiveFlight(entity);  
- print(response);  
-} catch (e) {  
-   print(e.toString());
-}
+} catch (e) {}
  
 ```
 
 You can get the `market`, `locale` and `currency` by using the `getNearestCulture()` method and passing in the user's IP address like so:
 
 ```Dart
-final NearestCulture = await _scannerApi.getNearestCulture('198.0.2.0');
+final NearestCulture response = await _scannerApi.getNearestCulture('198.0.2.0');
 
 print('Market: ${response?.market?.code}');  
 print('Locale: ${response?.locale?.code}');  
