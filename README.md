@@ -17,7 +17,7 @@ You can get a Skyscanner API key from here: https://developers.skyscanner.net/do
 
 Initialise your **apiKey** like so:
 ```Dart
-  final _scannerApi = SkyScannerApi().initializeApiKey(apiKey: 'apiKey');
+  final _scannerApi = SkyScannerApi()..initializeApiKey(apiKey: 'apiKey');
 ```
 
 ## Flight Live Prices API
@@ -84,14 +84,17 @@ try {
   );  
   
  final FlightLivePricesCreateResponse? response = await _scannerApi.createSearchLiveFlight(entity);  
-} catch (e) {}
+ print(response);  
+} catch (e) {  
+   print(e.toString());
+}
  
 ```
 
 You can get the `market`, `locale` and `currency` by using the `getNearestCulture()` method and passing in the user's IP address like so:
 
 ```Dart
-final NearestCulture response = await _scannerApi.getNearestCulture('198.0.2.0');
+final NearestCulture = await _scannerApi.getNearestCulture('198.0.2.0');
 
 print('Market: ${response?.market?.code}');  
 print('Locale: ${response?.locale?.code}');  
@@ -132,4 +135,41 @@ final FlightLivePricesCreateResponse? response =
 The `refreshSessionToken` is gotten from the  `createItineraryRefresh()` method.
 
 ## Flight Indicative Prices API
-The Indicative Prices API returns a list of the cheapest prices seen last by travellers for a given search criteria.
+The Indicative Prices API returns a list of the cheapest prices seen last by travellers for a given search criteria. This is API is exploratory in nature, meaning that it is used to get a 'feel' of the flight overall prices BUT it may not actually tell you the current price.
+
+You can use this API by calling the `indicativeSearch()` method like so:
+
+```Dart
+try {  
+  final entity = IndicativeSearchEntity(  
+    query: IndicativeSearchQuery(  
+      market: 'UK',  
+	  locale: 'en-GB',  
+	  currency: 'NGN',  
+	  queryLegs: [IndicativeSearchQueryLeg()],  
+	),  
+	alternativeParam: {},  
+  );  
+  
+ final FlightLivePricesCreateResponse? response =  
+      await _scannerApi.indicativeSearch(entity);  
+  
+} catch (e) {}
+```
+If you want to get prices of one way flights, specify just one `IndicativeSearchQueryLeg()` but if you want to get return prices as well then add two `IndicativeSearchQueryLeg()` to the queryLegs list property.
+
+Each `queryLeg`  **must only have one date type** such as: `dateRange` or `fixedDate` or `anytime`.
+
+Date type
+
+Description
+
+`dateRange`
+A range of dates to search for flights for. Will search for prices from the first to last date of each month
+
+`fixedDate`
+A specific date to search for flights for.
+
+`anytime`
+Will return best quotes for a given route.
+
