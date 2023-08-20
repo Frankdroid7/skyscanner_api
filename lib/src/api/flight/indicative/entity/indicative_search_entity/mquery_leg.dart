@@ -1,16 +1,26 @@
-import 'date_range.dart';
-import 'destination_place.dart';
-import 'origin_place.dart';
+import 'package:skyscanner_api/skyscanner_export.dart';
 
 class IndicativeSearchQueryLeg {
   OriginPlace originPlace;
   DestinationPlace destinationPlace;
   DateRange? dateRange;
+  GenericDate? fixedDate;
+  bool? anytime;
 
   IndicativeSearchQueryLeg(
       {required this.originPlace,
       required this.destinationPlace,
-      this.dateRange});
+      this.fixedDate,
+      this.anytime,
+      this.dateRange})
+      : assert(
+            (dateRange != null && fixedDate == null && anytime != null) ||
+                (dateRange == null &&
+                    fixedDate != null &&
+                    anytime == null &&
+                    fixedDate.day != null) ||
+                (dateRange == null && fixedDate == null && anytime != null),
+            'You can should only specify one of dateRange, fixedDate or anytime. Also, when specifying fixedDate, day must be specified');
 
   factory IndicativeSearchQueryLeg.fromJson(Map<String, dynamic> json) =>
       IndicativeSearchQueryLeg(
@@ -24,8 +34,10 @@ class IndicativeSearchQueryLeg {
       );
 
   Map<String, dynamic> toJson() => {
-        'originPlace': originPlace?.toJson(),
-        'destinationPlace': destinationPlace?.toJson(),
+        'originPlace': originPlace.toJson(),
+        'destinationPlace': destinationPlace.toJson(),
         'date_range': dateRange?.toJson(),
+        'fixed_date': fixedDate?.toJson(),
+        'anytime': anytime,
       };
 }

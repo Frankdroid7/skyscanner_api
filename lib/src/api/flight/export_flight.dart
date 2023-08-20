@@ -1,5 +1,4 @@
 export '../flight/live/entity/flight_live_prices_create_entity/flight_live_prices_create_entity.dart';
-export '../flight/live/entity/flight_live_prices_create_entity/date.dart';
 export '../flight/live/entity/flight_live_prices_create_entity/destination_place_id.dart';
 export '../flight/live/entity/flight_live_prices_create_entity/origin_place_id.dart';
 export '../flight/live/entity/flight_live_prices_create_entity/query_leg.dart';
@@ -15,7 +14,8 @@ export '../flight/live/model/flight_live_prices_create_response/results.dart';
 export '../flight/live/model/flight_live_prices_create_response/segments.dart';
 export '../flight/live/model/flight_live_prices_create_response/sorting_options.dart';
 export '../flight/live/model/flight_live_prices_create_response/stats.dart';
-
+export '../flight/indicative/model/indicate_prices_response.dart';
+export '../flight/indicative/entity/indicative_search_entity/date_time_grouping_type_enum.dart';
 export '../flight/indicative/entity/indicative_search_entity/date_range.dart';
 export '../flight/indicative/entity/indicative_search_entity/destination_place.dart';
 export '../flight/indicative/entity/indicative_search_entity/end_date.dart';

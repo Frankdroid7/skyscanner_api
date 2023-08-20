@@ -45,15 +45,31 @@ class _MyHomePageState extends State<MyHomePage> {
           market: 'UK',
           locale: 'en-GB',
           currency: 'NGN',
-          queryLegs: [],
+          dateTimeGroupingType:
+              DateTimeGroupingType.DATE_TIME_GROUPING_TYPE_BY_MONTH,
+          queryLegs: [
+            IndicativeSearchQueryLeg(
+              originPlace:
+                  OriginPlace(queryPlace: QueryPlace(entityId: '29475087')),
+              destinationPlace:
+                  DestinationPlace(queryPlace: QueryPlace(iata: 'LHR')),
+              anytime: true,
+            ),
+            IndicativeSearchQueryLeg(
+              originPlace: OriginPlace(queryPlace: QueryPlace(iata: 'LHR')),
+              destinationPlace: DestinationPlace(
+                  queryPlace: QueryPlace(entityId: '29475087')),
+              anytime: true,
+            ),
+          ],
         ),
         alternativeParam: {},
       );
 
-      final FlightLivePricesCreateResponse? response =
+      final IndicativePricesResponse response =
           await _scannerApi.indicativeSearch(entity);
 
-      _data = response?.refreshSessionToken ?? 'NOT FOUND';
+      _data = response.content.result?.places.toString();
     } catch (e) {
       _data = e.toString();
     }

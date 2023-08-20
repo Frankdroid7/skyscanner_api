@@ -1,15 +1,20 @@
 class DestinationPlaceId {
-  String? iataOrEntityId;
+  String? entityId;
+  String? iata;
 
-  DestinationPlaceId({this.iataOrEntityId});
+  DestinationPlaceId({this.entityId, this.iata})
+      : assert(entityId != null || iata != null,
+            'Either entityId or iata must be provided');
 
   factory DestinationPlaceId.fromJson(Map<String, dynamic> json) {
     return DestinationPlaceId(
-      iataOrEntityId: json['iata'] as String?,
+      entityId: json['entityId'],
+      iata: json['iata'],
     );
   }
 
   Map<String, dynamic> toJson() => {
-        'iata': iataOrEntityId,
+        'iata': iata,
+        'entityId': entityId,
       };
 }
