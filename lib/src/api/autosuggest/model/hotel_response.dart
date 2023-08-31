@@ -60,23 +60,23 @@ class HotelResponsePlaces {
     score = json['score'];
     name = json['name'];
     highlight = json['highlight'] != null
-        ? new Highlight.fromJson(json['highlight'])
+        ? Highlight.fromJson(json['highlight'])
         : null;
     entityId = json['entityId'];
     type = json['type'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['hierarchy'] = this.hierarchy;
-    data['location'] = this.location;
-    data['score'] = this.score;
-    data['name'] = this.name;
-    if (this.highlight != null) {
-      data['highlight'] = this.highlight!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['hierarchy'] = hierarchy;
+    data['location'] = location;
+    data['score'] = score;
+    data['name'] = name;
+    if (highlight != null) {
+      data['highlight'] = highlight!.toJson();
     }
-    data['entityId'] = this.entityId;
-    data['type'] = this.type;
+    data['entityId'] = entityId;
+    data['type'] = type;
     return data;
   }
 }

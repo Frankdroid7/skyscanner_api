@@ -2,6 +2,10 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:skyscanner_api/skyscanner_export.dart';
+import 'package:skyscanner_api/src/api/culture/culture_exports.dart';
+import 'package:skyscanner_api/src/api/culture/model/response/currency.dart';
+import 'package:skyscanner_api/src/api/culture/model/response/locale.dart';
+import 'package:skyscanner_api/src/api/geo/model/geo_flight_response.dart';
 import 'package:skyscanner_api/src/api/culture/model/currency.dart';
 import 'package:skyscanner_api/src/api/culture/model/locale.dart';
 

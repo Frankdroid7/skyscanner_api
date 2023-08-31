@@ -2,6 +2,7 @@ import 'package:skyscanner_api/src/api/autosuggest/service/contract/autosuggest_
 import 'package:skyscanner_api/src/api/carriers/service/contracts/carriers_contract_impl.dart';
 import 'package:skyscanner_api/src/api/culture/service/contracts/culture_contract_impl.dart';
 import 'package:skyscanner_api/src/api/geo/service/contracts/geo_contract_impl.dart';
+
 import '../../skyscanner_export.dart';
 import '../api/carriers/model/carriers_response.dart';
 import '../api/culture/culture_exports.dart';
