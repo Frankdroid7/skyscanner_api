@@ -83,16 +83,16 @@ try {
         QueryLeg(  
           date: SkyScannerDate(  
             year: 2023,  
-			month: 08,  
-			day: 23,  
+            month: 08,  
+            day: 23,  
 	      ),  
 	 originPlaceId: OriginPlaceId(entityId: '104120218'),  
 	 destinationPlaceId: DestinationPlaceId(iata: 'LNH'), 
-	  )  
-    ],  
-  ),  
+	   )  
+       ],  
+     ),  
   alternativeParam: {},  
-  );  
+);  
   
  final FlightLivePricesCreateResponse? response = await _scannerApi.createSearchLiveFlight(entity);  
  print(response);  
@@ -159,8 +159,8 @@ try {
   final entity = IndicativeSearchEntity(  
     query: IndicativeSearchQuery(  
       market: 'UK',  
-	  locale: 'en-GB',  
-	  currency: 'NGN',  
+	 locale: 'en-GB',  
+	 currency: 'NGN',  
 	 dateTimeGroupingType: DateTimeGroupingType.DATE_TIME_GROUPING_TYPE_BY_MONTH,
 	 queryLegs: [  
   IndicativeSearchQueryLeg(  
@@ -176,7 +176,7 @@ try {
         queryPlace: QueryPlace(entityId: '29475087')),  
 	anytime: true,  
 		),  
-	  ],  
+	   ],  
 	),  
 	alternativeParam: {},  
   );  
@@ -397,10 +397,10 @@ You can use the `` a list of geographical locations in a language determined by 
 try {  
   NearestFlightEntity nearestFlightEntity = NearestFlightEntity(  
     locale: 'en-GB',  
-	locator: LocatorEntity(  
+    locator: LocatorEntity(  
     coordinates: Coordinates(  
     latitude: 51.5074,  
-	longitude: 0.1278,  
+    longitude: 0.1278,  
 		  ),  
 	  ),  
   );  
