@@ -119,7 +119,7 @@ You can get the IATA from this webpage: https://www.iata.org/en/publications/dir
 OR
 You can get the `iata` or `entityId` through the `getGeoFlights()` passing in the user's `locale` like so:
 ```dart
-final response = await _scannerApi.getGeoFlights('en-GB');  
+final GeoFlightResponse? = await _scannerApi.getGeoFlights('en-GB');  
 print(response?.places?.first.iata);
 print(response?.places?.first.entityId);
 ```
@@ -380,7 +380,35 @@ The Geo API returns a list of localised geographical locations in the requested 
 
 You can use the `getGeoFlights()` method as discussed above to get a list of geographical locations in a language determined by the given `locale`.
 
+```Dart
+try {  
+  final GeoFlightResponse? response =  
+      await _scannerApi.getGeoFlights(locale: 'en-GB');  
+  
+  response?.places?.forEach((element) {  
+    print(element.entityId);  
+  });  
+  } catch (e) {}
+```
 
+You can use the `` a list of geographical locations in a language determined by the given `locale` starting from the nearest airport. Results are based on a locator which is either an `ipAddress` or set of `coordinates` (you can't pass both) like so:
 
-
-
+```Dart
+try {  
+  NearestFlightEntity nearestFlightEntity = NearestFlightEntity(  
+    locale: 'en-GB',  
+	locator: LocatorEntity(  
+    coordinates: Coordinates(  
+    latitude: 51.5074,  
+	longitude: 0.1278,  
+		  ),  
+	  ),  
+  );  
+ final GeoFlightResponse? response = await _scannerApi  
+  .getGeoNearestFlights(nearestFlight: nearestFlightEntity);  
+  
+  response?.places?.forEach((element) {  
+    print(element.entityId);  
+  });  
+  } catch (e) {}
+```
