@@ -1,3 +1,5 @@
+import '../../../common/models/sky_scanner_coordinates.dart';
+
 class NearestFlightEntity {
   String? locale;
   LocatorEntity? locator;
@@ -18,7 +20,11 @@ class LocatorEntity {
   Coordinates? coordinates;
   String? ipAddress;
 
-  LocatorEntity({this.coordinates, this.ipAddress});
+  LocatorEntity({this.coordinates, this.ipAddress})
+      : assert(
+            (coordinates != null && ipAddress == null) ||
+                (coordinates == null && ipAddress != null),
+            'When using the LocatorEntity class, pass in either coordinates or ipAddress but not both.');
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
@@ -28,20 +34,6 @@ class LocatorEntity {
     if (ipAddress != null) {
       data['ipAddress'] = ipAddress;
     }
-    return data;
-  }
-}
-
-class Coordinates {
-  double latitude;
-  double longitude;
-
-  Coordinates({required this.latitude, required this.longitude});
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['latitude'] = latitude;
-    data['longitude'] = longitude;
     return data;
   }
 }

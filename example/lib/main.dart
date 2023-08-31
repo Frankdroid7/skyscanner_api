@@ -66,14 +66,9 @@ class _MyHomePageState extends State<MyHomePage> {
         alternativeParam: {},
       );
 
-      final IndicativePricesResponse response =
+      final FlightLivePricesCreateResponse? response =
           await _scannerApi.indicativeSearch(entity);
-
-      _data = response.content.result?.places.toString();
-    } catch (e) {
-      _data = e.toString();
-    }
-    setState(() {});
+    } catch (e) {}
   }
 
   @override

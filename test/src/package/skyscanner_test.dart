@@ -2,11 +2,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:skyscanner_api/skyscanner_export.dart';
-import 'package:skyscanner_api/src/api/culture/culture_exports.dart';
-import 'package:skyscanner_api/src/api/culture/model/response/currency.dart';
-import 'package:skyscanner_api/src/api/culture/model/response/locale.dart';
-import 'package:skyscanner_api/src/api/flight/live/model/flight_live_prices_create_response/flight_live_prices_create_response.dart';
-import 'package:skyscanner_api/src/api/geo/model/geo_flight_response.dart';
+import 'package:skyscanner_api/src/api/culture/model/currency.dart';
+import 'package:skyscanner_api/src/api/culture/model/locale.dart';
 
 import 'skyscanner_test.mocks.dart';
 
@@ -44,14 +41,14 @@ void main() async {
       verify(mockScannerApi.getCarriers()).called(1);
 
       /// Stub getCarriers() function is successful
-      when(mockScannerApi.getCarriers())
-          .thenAnswer((_) async => Future.value(<String, dynamic>{}));
+      when(mockScannerApi.getCarriers()).thenAnswer((_) async =>
+          Future.value(CarriersResponse(carriers: {}, status: '')));
 
       /// Make call to getCarriers()
       response = await mockScannerApi.getCarriers();
 
-      /// Ensure the response from the mocked call is an instance of Map<String, dynamic>
-      expect(response, isInstanceOf<Map<String, dynamic>>());
+      /// Ensure the response from the mocked call is an instance of CarriersResponse
+      expect(response, isInstanceOf<CarriersResponse>());
 
       /// Stub getCarriers() function is failed
       when(mockScannerApi.getCarriers()).thenAnswer((_) async => null);
@@ -247,7 +244,7 @@ void main() async {
       dynamic createItineraryResponse = await mockScannerApi
           .createItineraryRefresh(sessionToken: '', itineraryId: '');
 
-      /// Ensure the response from the mocked call is a dynamic response
+      /// Ensure the response from the mocked call is a FlightLivePricesCreateResponse
       expect(createItineraryResponse,
           isInstanceOf<FlightLivePricesCreateResponse>());
 
@@ -274,7 +271,7 @@ void main() async {
       createItineraryResponse = await mockScannerApi.createItineraryRefresh(
           sessionToken: '', itineraryId: '');
 
-      /// Ensure the response from the mocked call is dynamic
+      /// Ensure the response from the mocked call is a FlightLivePricesCreateResponse
       expect(createItineraryResponse,
           isInstanceOf<FlightLivePricesCreateResponse>());
     });
@@ -296,7 +293,7 @@ void main() async {
       dynamic pollItineraryRefresh =
           await mockScannerApi.pollItineraryRefresh(refreshSessionToken: '');
 
-      /// Ensure the response from the mocked call is a dynamic response
+      /// Ensure the response from the mocked call is a FlightLivePricesCreateResponse
       expect(
           pollItineraryRefresh, isInstanceOf<FlightLivePricesCreateResponse>());
 
@@ -345,7 +342,7 @@ void main() async {
       response = await mockScannerApi.getAutosuggestFlight(
           autosuggestFlightEntity: AutosuggestFlightEntity());
 
-      /// Ensure the response from the mocked call is an instance of FlightLivePricesCreateResponse()
+      /// Ensure the response from the mocked call is an instance of AutosuggestFlightResponse
       expect(response, isInstanceOf<AutosuggestFlightResponse>());
 
       /// Stub getAutosuggestFlight() function is failed
@@ -379,7 +376,7 @@ void main() async {
       /// Make call to getHotel()
       response = await mockScannerApi.getHotel(hotelEntity: HotelEntity());
 
-      /// Ensure the response from the mocked call is an instance of getHotel()
+      /// Ensure the response from the mocked call is an instance of HotelResponse
       expect(response, isInstanceOf<HotelResponse>());
 
       /// Stub getHotel() function is failed
@@ -405,14 +402,40 @@ void main() async {
       /// Stub indicativeSearch() function is successful
       when(mockScannerApi.indicativeSearch(
               argThat(isInstanceOf<IndicativeSearchEntity>())))
-          .thenAnswer((_) async => Future.value(dynamic));
+          .thenAnswer(
+              (_) async => Future.value(FlightLivePricesCreateResponse()));
 
       /// Make call to indicativeSearch()
-      response =
-          await mockScannerApi.indicativeSearch(IndicativeSearchEntity());
+      response = await mockScannerApi.indicativeSearch(
+        IndicativeSearchEntity(
+          query: IndicativeSearchQuery(
+            market: 'UK',
+            locale: 'en-GB',
+            currency: 'NGN',
+            dateTimeGroupingType:
+                DateTimeGroupingType.DATE_TIME_GROUPING_TYPE_BY_MONTH,
+            queryLegs: [
+              IndicativeSearchQueryLeg(
+                originPlace:
+                    OriginPlace(queryPlace: QueryPlace(entityId: '29475087')),
+                destinationPlace:
+                    DestinationPlace(queryPlace: QueryPlace(iata: 'LHR')),
+                anytime: true,
+              ),
+              IndicativeSearchQueryLeg(
+                originPlace: OriginPlace(queryPlace: QueryPlace(iata: 'LHR')),
+                destinationPlace: DestinationPlace(
+                    queryPlace: QueryPlace(entityId: '29475087')),
+                anytime: true,
+              ),
+            ],
+          ),
+          alternativeParam: {},
+        ),
+      );
 
-      /// Ensure the response from the mocked call is an instance of indicativeSearch()
-      expect(response, isInstanceOf<dynamic>());
+      /// Ensure the response from the mocked call is an instance of FlightLivePricesCreateResponse
+      expect(response, isInstanceOf<FlightLivePricesCreateResponse>());
 
       /// Stub indicativeSearch() function is failed
       when(mockScannerApi.indicativeSearch(
@@ -420,8 +443,31 @@ void main() async {
           .thenAnswer((_) async => Future.value(null));
 
       /// Make call to indicativeSearch()
-      response =
-          await mockScannerApi.indicativeSearch(IndicativeSearchEntity());
+      response = await mockScannerApi.indicativeSearch(IndicativeSearchEntity(
+        query: IndicativeSearchQuery(
+          market: 'UK',
+          locale: 'en-GB',
+          currency: 'NGN',
+          dateTimeGroupingType:
+              DateTimeGroupingType.DATE_TIME_GROUPING_TYPE_BY_MONTH,
+          queryLegs: [
+            IndicativeSearchQueryLeg(
+              originPlace:
+                  OriginPlace(queryPlace: QueryPlace(entityId: '29475087')),
+              destinationPlace:
+                  DestinationPlace(queryPlace: QueryPlace(iata: 'LHR')),
+              anytime: true,
+            ),
+            IndicativeSearchQueryLeg(
+              originPlace: OriginPlace(queryPlace: QueryPlace(iata: 'LHR')),
+              destinationPlace: DestinationPlace(
+                  queryPlace: QueryPlace(entityId: '29475087')),
+              anytime: true,
+            ),
+          ],
+        ),
+        alternativeParam: {},
+      ));
 
       /// Ensure the response from the mocked call failed and returned a null value
       expect(response, null);
@@ -441,7 +487,7 @@ void main() async {
       /// Make call to getLocales()
       response = await mockScannerApi.getLocales();
 
-      /// Ensure the response from the mocked call is an instance of getLocales()
+      /// Ensure the response from the mocked call is an instance of LocaleResponse
       expect(response, isInstanceOf<LocaleResponse>());
 
       /// Stub getLocales() function is failed
@@ -497,7 +543,7 @@ void main() async {
       /// Make call to getMarkets()
       response = await mockScannerApi.getMarkets('');
 
-      /// Ensure the response from the mocked call is an instance of getMarkets()
+      /// Ensure the response from the mocked call is an instance of MarketResponse
       expect(response, isInstanceOf<MarketResponse>());
 
       /// Stub getMarkets() function is failed
@@ -525,7 +571,7 @@ void main() async {
       /// Make call to getNearestCulture()
       response = await mockScannerApi.getNearestCulture('');
 
-      /// Ensure the response from the mocked call is an instance of getNearestCulture()
+      /// Ensure the response from the mocked call is an instance of NearestCulture
       expect(response, isInstanceOf<NearestCulture>());
 
       /// Stub getNearestCulture() function is failed
@@ -556,7 +602,7 @@ void main() async {
       response =
           await mockScannerApi.getCarHire(carHireEntity: CarHireEntity());
 
-      /// Ensure the response from the mocked call is an instance of getCarHire()
+      /// Ensure the response from the mocked call is an instance of CarHireResponse
       expect(response, isInstanceOf<CarHireResponse>());
 
       /// Stub getCarHire() function is failed
@@ -572,27 +618,27 @@ void main() async {
 
     test('Test for getGeoFlights() function', () async {
       /// Trigger getGeoFlights() function Once
-      await mockScannerApi.getGeoFlights(null);
+      await mockScannerApi.getGeoFlights(locale: 'en-GB');
 
       /// Ensure getGeoFlights() function is called once
-      verify(mockScannerApi.getGeoFlights(null)).called(1);
+      verify(mockScannerApi.getGeoFlights(locale: 'en-GB')).called(1);
 
       /// Stub getGeoFlights() function is successful
-      when(mockScannerApi.getGeoFlights(argThat(isInstanceOf<String>())))
+      when(mockScannerApi.getGeoFlights(locale: 'en-GB'))
           .thenAnswer((_) async => Future.value(GeoFlightResponse()));
 
       /// Make call to getGeoFlights()
-      response = await mockScannerApi.getGeoFlights('');
+      response = await mockScannerApi.getGeoFlights(locale: 'en-GB');
 
-      /// Ensure the response from the mocked call is an instance of getGeoFlights()
+      /// Ensure the response from the mocked call is an instance of GeoFlightResponse
       expect(response, isInstanceOf<GeoFlightResponse>());
 
       /// Stub getCarHire() function is failed
-      when(mockScannerApi.getGeoFlights(null))
+      when(mockScannerApi.getGeoFlights(locale: 'en-GB'))
           .thenAnswer((_) async => Future.value(null));
 
       /// Make call to getGeoFlights()
-      response = await mockScannerApi.getGeoFlights(null);
+      response = await mockScannerApi.getGeoFlights(locale: 'en-GB');
 
       /// Ensure the response from the mocked call failed and returned a null value
       expect(response, null);
@@ -610,14 +656,14 @@ void main() async {
       when(mockScannerApi.getGeoNearestFlights(
               nearestFlight: argThat(isInstanceOf<NearestFlightEntity>(),
                   named: 'nearestFlight')))
-          .thenAnswer((_) async => Future.value(<String, dynamic>{}));
+          .thenAnswer((_) async => Future.value(GeoFlightResponse()));
 
       /// Make call to getGeoNearestFlights()
       response = await mockScannerApi.getGeoNearestFlights(
           nearestFlight: NearestFlightEntity());
 
-      /// Ensure the response from the mocked call is an instance of getGeoNearestFlights()
-      expect(response, isInstanceOf<Map<String, dynamic>>());
+      /// Ensure the response from the mocked call is an instance of GeoFlightResponse
+      expect(response, isInstanceOf<GeoFlightResponse>());
 
       /// Stub getGeoNearestFlights() function is failed
       when(mockScannerApi.getGeoNearestFlights(nearestFlight: null))

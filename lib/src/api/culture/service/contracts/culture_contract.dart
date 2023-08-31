@@ -1,9 +1,8 @@
-import 'package:skyscanner_api/src/api/culture/model/response/currency.dart';
-import 'package:skyscanner_api/src/api/culture/model/response/locale.dart';
-import 'package:skyscanner_api/src/network/network_exports.dart';
-import 'package:skyscanner_api/src/api/culture/model/response/nearest_culture.dart';
-
-import '../../../../../skyscanner_export.dart';
+import '../../../../network/network_exports.dart';
+import '../../model/currency.dart';
+import '../../model/locale.dart';
+import '../../model/market.dart';
+import '../../model/nearest_culture.dart';
 
 abstract class CultureContract extends NetworkService {
   Future<LocaleResponse> getLocales();
