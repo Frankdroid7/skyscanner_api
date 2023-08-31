@@ -2,22 +2,19 @@ import 'end_date.dart';
 import 'start_date.dart';
 
 class DateRange {
-  StartDate? startDate;
-  EndDate? endDate;
+  GenericDate startDate;
+  GenericDate endDate;
 
-  DateRange({this.startDate, this.endDate});
+  DateRange({required this.startDate, required this.endDate});
 
   factory DateRange.fromJson(Map<String, dynamic> json) => DateRange(
-        startDate: json['startDate'] == null
-            ? null
-            : StartDate.fromJson(json['startDate'] as Map<String, dynamic>),
-        endDate: json['endDate'] == null
-            ? null
-            : EndDate.fromJson(json['endDate'] as Map<String, dynamic>),
+        startDate:
+            GenericDate.fromJson(json['startDate'] as Map<String, dynamic>),
+        endDate: GenericDate.fromJson(json['endDate'] as Map<String, dynamic>),
       );
 
   Map<String, dynamic> toJson() => {
-        'startDate': startDate?.toJson(),
-        'endDate': endDate?.toJson(),
+        'startDate': startDate.toJson(),
+        'endDate': endDate.toJson(),
       };
 }

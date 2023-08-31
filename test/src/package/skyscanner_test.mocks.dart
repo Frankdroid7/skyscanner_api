@@ -7,14 +7,8 @@ import 'dart:async' as _i3;
 
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:skyscanner_api/skyscanner_export.dart' as _i2;
-import 'package:skyscanner_api/src/api/culture/model/response/currency.dart'
-    as _i5;
-import 'package:skyscanner_api/src/api/culture/model/response/locale.dart'
-    as _i4;
-import 'package:skyscanner_api/src/api/culture/model/response/nearest_culture.dart'
-    as _i6;
-import 'package:skyscanner_api/src/api/geo/model/geo_flight_response.dart'
-    as _i7;
+import 'package:skyscanner_api/src/api/culture/model/currency.dart' as _i5;
+import 'package:skyscanner_api/src/api/culture/model/locale.dart' as _i4;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -57,14 +51,14 @@ class MockSkyScannerApi extends _i1.Mock implements _i2.SkyScannerApi {
         returnValueForMissingStub: null,
       );
   @override
-  _i3.Future<Map<String, dynamic>?> getCarriers() => (super.noSuchMethod(
+  _i3.Future<_i2.CarriersResponse?> getCarriers() => (super.noSuchMethod(
         Invocation.method(
           #getCarriers,
           [],
         ),
-        returnValue: _i3.Future<Map<String, dynamic>?>.value(),
-        returnValueForMissingStub: _i3.Future<Map<String, dynamic>?>.value(),
-      ) as _i3.Future<Map<String, dynamic>?>);
+        returnValue: _i3.Future<_i2.CarriersResponse?>.value(),
+        returnValueForMissingStub: _i3.Future<_i2.CarriersResponse?>.value(),
+      ) as _i3.Future<_i2.CarriersResponse?>);
   @override
   _i3.Future<Map<String, dynamic>?> getCarsDayView(
           {_i2.ReferralEntity? entity}) =>
@@ -145,15 +139,17 @@ class MockSkyScannerApi extends _i1.Mock implements _i2.SkyScannerApi {
             _i3.Future<_i2.FlightLivePricesCreateResponse?>.value(),
       ) as _i3.Future<_i2.FlightLivePricesCreateResponse?>);
   @override
-  _i3.Future<dynamic> indicativeSearch(_i2.IndicativeSearchEntity? entity) =>
+  _i3.Future<_i2.FlightLivePricesCreateResponse?> indicativeSearch(
+          _i2.IndicativeSearchEntity? entity) =>
       (super.noSuchMethod(
         Invocation.method(
           #indicativeSearch,
           [entity],
         ),
-        returnValue: _i3.Future<dynamic>.value(),
-        returnValueForMissingStub: _i3.Future<dynamic>.value(),
-      ) as _i3.Future<dynamic>);
+        returnValue: _i3.Future<_i2.FlightLivePricesCreateResponse?>.value(),
+        returnValueForMissingStub:
+            _i3.Future<_i2.FlightLivePricesCreateResponse?>.value(),
+      ) as _i3.Future<_i2.FlightLivePricesCreateResponse?>);
   @override
   _i3.Future<_i4.LocaleResponse?> getLocales() => (super.noSuchMethod(
         Invocation.method(
@@ -183,15 +179,15 @@ class MockSkyScannerApi extends _i1.Mock implements _i2.SkyScannerApi {
         returnValueForMissingStub: _i3.Future<_i2.MarketResponse?>.value(),
       ) as _i3.Future<_i2.MarketResponse?>);
   @override
-  _i3.Future<_i6.NearestCulture?> getNearestCulture(String? ipAddress) =>
+  _i3.Future<_i2.NearestCulture?> getNearestCulture(String? ipAddress) =>
       (super.noSuchMethod(
         Invocation.method(
           #getNearestCulture,
           [ipAddress],
         ),
-        returnValue: _i3.Future<_i6.NearestCulture?>.value(),
-        returnValueForMissingStub: _i3.Future<_i6.NearestCulture?>.value(),
-      ) as _i3.Future<_i6.NearestCulture?>);
+        returnValue: _i3.Future<_i2.NearestCulture?>.value(),
+        returnValueForMissingStub: _i3.Future<_i2.NearestCulture?>.value(),
+      ) as _i3.Future<_i2.NearestCulture?>);
   @override
   _i3.Future<_i2.CarHireResponse?> getCarHire(
           {required _i2.CarHireEntity? carHireEntity}) =>
@@ -230,17 +226,18 @@ class MockSkyScannerApi extends _i1.Mock implements _i2.SkyScannerApi {
         returnValueForMissingStub: _i3.Future<_i2.HotelResponse?>.value(),
       ) as _i3.Future<_i2.HotelResponse?>);
   @override
-  _i3.Future<_i7.GeoFlightResponse?> getGeoFlights(String? locale) =>
+  _i3.Future<_i2.GeoFlightResponse?> getGeoFlights({required String? locale}) =>
       (super.noSuchMethod(
         Invocation.method(
           #getGeoFlights,
-          [locale],
+          [],
+          {#locale: locale},
         ),
-        returnValue: _i3.Future<_i7.GeoFlightResponse?>.value(),
-        returnValueForMissingStub: _i3.Future<_i7.GeoFlightResponse?>.value(),
-      ) as _i3.Future<_i7.GeoFlightResponse?>);
+        returnValue: _i3.Future<_i2.GeoFlightResponse?>.value(),
+        returnValueForMissingStub: _i3.Future<_i2.GeoFlightResponse?>.value(),
+      ) as _i3.Future<_i2.GeoFlightResponse?>);
   @override
-  _i3.Future<Map<String, dynamic>?> getGeoNearestFlights(
+  _i3.Future<_i2.GeoFlightResponse?> getGeoNearestFlights(
           {required _i2.NearestFlightEntity? nearestFlight}) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -248,7 +245,7 @@ class MockSkyScannerApi extends _i1.Mock implements _i2.SkyScannerApi {
           [],
           {#nearestFlight: nearestFlight},
         ),
-        returnValue: _i3.Future<Map<String, dynamic>?>.value(),
-        returnValueForMissingStub: _i3.Future<Map<String, dynamic>?>.value(),
-      ) as _i3.Future<Map<String, dynamic>?>);
+        returnValue: _i3.Future<_i2.GeoFlightResponse?>.value(),
+        returnValueForMissingStub: _i3.Future<_i2.GeoFlightResponse?>.value(),
+      ) as _i3.Future<_i2.GeoFlightResponse?>);
 }

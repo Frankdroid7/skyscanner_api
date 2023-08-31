@@ -1,12 +1,13 @@
 import 'package:skyscanner_api/src/api/autosuggest/service/contract/autosuggest_contract_impl.dart';
 import 'package:skyscanner_api/src/api/carriers/service/contracts/carriers_contract_impl.dart';
-import 'package:skyscanner_api/src/api/culture/model/response/currency.dart';
-import 'package:skyscanner_api/src/api/culture/model/response/locale.dart';
-import 'package:skyscanner_api/src/api/culture/model/response/nearest_culture.dart';
 import 'package:skyscanner_api/src/api/culture/service/contracts/culture_contract_impl.dart';
 import 'package:skyscanner_api/src/api/geo/service/contracts/geo_contract_impl.dart';
 
 import '../../skyscanner_export.dart';
+import '../api/carriers/model/carriers_response.dart';
+import '../api/culture/culture_exports.dart';
+import '../api/culture/model/currency.dart';
+import '../api/culture/model/locale.dart';
 import '../api/flight/indicative/contract/indicative_search_contract_impl.dart';
 import '../api/flight/live/contract/flight_live_contract_impl.dart';
 import '../api/geo/model/geo_flight_response.dart';
@@ -30,19 +31,20 @@ mixin ContractImplMixin {
 class SkyScannerManager with ContractImplMixin {
   /*Geo API Methods*/
   /// Fetch nearest geo flights
-  Future<Map<String, dynamic>> getGeoNearestFlights(
-      NearestFlightEntity nearestFlight) async {
+  Future<GeoFlightResponse?> getGeoNearestFlights(
+      {required NearestFlightEntity nearestFlight}) async {
     try {
-      return await _geoContractImpl.getGeoNearestFlights(nearestFlight);
+      return await _geoContractImpl.getGeoNearestFlights(
+          nearestFlight: nearestFlight);
     } catch (e) {
       throw Exception(e.toString());
     }
   }
 
   /// Fetch the available geo flights
-  Future<GeoFlightResponse> getGeoFlights(String locale) async {
+  Future<GeoFlightResponse> getGeoFlights({required String locale}) async {
     try {
-      return await _geoContractImpl.getGeoFlights(locale);
+      return await _geoContractImpl.getGeoFlights(locale: locale);
     } catch (e) {
       throw Exception(e.toString());
     }
@@ -160,7 +162,7 @@ class SkyScannerManager with ContractImplMixin {
 
   /*Carriers API Methods*/
   /// Fetch carriers
-  Future<Map<String, dynamic>> getCarriers() async {
+  Future<CarriersResponse> getCarriers() async {
     try {
       return await _carriersContractImpl.getCarriers();
     } catch (e) {
@@ -170,7 +172,8 @@ class SkyScannerManager with ContractImplMixin {
 
   /*Flight Indicative API Methods*/
   /// Indicative Search
-  Future<dynamic> indicativeSearch(IndicativeSearchEntity entity) async {
+  Future<FlightLivePricesCreateResponse> indicativeSearch(
+      IndicativeSearchEntity entity) async {
     try {
       return await _indicativeSearchContractImpl.indicativeSearch(entity);
     } catch (e) {

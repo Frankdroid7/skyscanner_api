@@ -38,10 +38,18 @@ class AutosuggestFlightQuery {
   /// If you add "PLACE_TYPE_COUNTRY" to the list OR you leave the list empty, the 'entityId' that will be returned can only be used to get Flight Indicative Prices.
   List<String>? includedEntityTypes;
 
+  /// Alters ranking logic of entities. Defaults to false if not sent.
+  bool isDestination;
+
+  /// Limits number of entities returned in response. Take a min value of 1 and max of 50.
+  int limit;
+
   AutosuggestFlightQuery(
       {required this.market,
       required this.locale,
       required this.searchTerm,
+      this.limit = 10,
+      this.isDestination = false,
       this.includedEntityTypes});
 
   Map<String, dynamic> toJson() {
@@ -49,6 +57,7 @@ class AutosuggestFlightQuery {
     data['market'] = market;
     data['locale'] = locale;
     data['searchTerm'] = searchTerm;
+    data['isDestination'] = isDestination;
     data['includedEntityTypes'] = includedEntityTypes ?? [];
     return data;
   }

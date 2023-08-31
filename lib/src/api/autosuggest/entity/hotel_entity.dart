@@ -5,7 +5,7 @@ class HotelEntity {
   /// Limits number of entities returned in response. Take a min value of 1 and max of 50.
   int? limit;
 
-  HotelEntity({this.query, this.limit});
+  HotelEntity({this.query, this.limit = 10});
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};

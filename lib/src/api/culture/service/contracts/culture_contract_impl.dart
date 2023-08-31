@@ -1,11 +1,11 @@
 import 'package:dio/dio.dart';
-import 'package:skyscanner_api/src/api/culture/model/response/currency.dart';
-import 'package:skyscanner_api/src/api/culture/model/response/nearest_culture.dart';
-import 'package:skyscanner_api/src/api/culture/service/contracts/culture_contract.dart';
-import 'package:skyscanner_api/src/network/network_exports.dart';
 
-import '../../../../../skyscanner_export.dart';
-import '../../model/response/locale.dart';
+import '../../../../network/network_exports.dart';
+import '../../model/currency.dart';
+import '../../model/locale.dart';
+import '../../model/market.dart';
+import '../../model/nearest_culture.dart';
+import 'culture_contract.dart';
 
 /// Contract implementations of Culture APIs
 class CultureContractImpl extends CultureContract {

@@ -16,16 +16,16 @@ class LocaleResponse {
 }
 
 /// Locale that Skyscanner supports.
-class Locale {
+class LocaleData {
   /// Locale code, e.g.: en-GB
   String? code;
 
   /// The locale name, e.g.: English (United Kingdom)
   String? name;
 
-  Locale({this.code, this.name});
+  LocaleData({this.code, this.name});
 
-  Locale.fromJson(Map<String, dynamic> json) {
+  LocaleData.fromJson(Map<String, dynamic> json) {
     code = json['code'];
     name = json['name'];
   }

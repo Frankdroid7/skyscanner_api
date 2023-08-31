@@ -34,7 +34,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   void initState() {
-    _scannerApi.initializeApiKey(apiKey: '');
+    _scannerApi.initializeApiKey(apiKey: 'sh428739766321522266746152871799');
     super.initState();
   }
 
@@ -45,19 +45,30 @@ class _MyHomePageState extends State<MyHomePage> {
           market: 'UK',
           locale: 'en-GB',
           currency: 'NGN',
-          queryLegs: [IndicativeSearchQueryLeg()],
+          dateTimeGroupingType:
+              DateTimeGroupingType.DATE_TIME_GROUPING_TYPE_BY_MONTH,
+          queryLegs: [
+            IndicativeSearchQueryLeg(
+              originPlace:
+                  OriginPlace(queryPlace: QueryPlace(entityId: '29475087')),
+              destinationPlace:
+                  DestinationPlace(queryPlace: QueryPlace(iata: 'LHR')),
+              anytime: true,
+            ),
+            IndicativeSearchQueryLeg(
+              originPlace: OriginPlace(queryPlace: QueryPlace(iata: 'LHR')),
+              destinationPlace: DestinationPlace(
+                  queryPlace: QueryPlace(entityId: '29475087')),
+              anytime: true,
+            ),
+          ],
         ),
         alternativeParam: {},
       );
 
       final FlightLivePricesCreateResponse? response =
           await _scannerApi.indicativeSearch(entity);
-
-      _data = response?.refreshSessionToken ?? 'NOT FOUND';
-    } catch (e) {
-      _data = e.toString();
-    }
-    setState(() {});
+    } catch (e) {}
   }
 
   @override

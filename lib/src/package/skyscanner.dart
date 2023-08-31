@@ -1,9 +1,6 @@
 import 'package:skyscanner_api/skyscanner_export.dart';
-import 'package:skyscanner_api/src/api/culture/model/response/currency.dart';
-import 'package:skyscanner_api/src/api/culture/model/response/locale.dart';
-import 'package:skyscanner_api/src/api/culture/model/response/nearest_culture.dart';
-
-import '../api/geo/model/geo_flight_response.dart';
+import '../api/culture/model/currency.dart';
+import '../api/culture/model/locale.dart';
 import '../common/common_export.dart';
 import '../manager/manager_exports.dart';
 
@@ -42,7 +39,7 @@ class SkyScannerApi {
   /*Carriers API methods*/
   /// Returns a Map of a full list of active carriers with name and IATA code indexed by their carrierId.
   /// The Map contains 'name' - The legal name of the carrier and 'iata' - The IATA code of the carrier.
-  Future<Map<String, dynamic>?> getCarriers() async =>
+  Future<CarriersResponse?> getCarriers() async =>
       await _scannerManager?.getCarriers();
 
   /*Referral API methods*/
@@ -81,7 +78,8 @@ class SkyScannerApi {
 
   /*Flights Indicative API methods*/
   /// Getter for indicative search
-  Future<dynamic> indicativeSearch(IndicativeSearchEntity entity) async =>
+  Future<FlightLivePricesCreateResponse?> indicativeSearch(
+          IndicativeSearchEntity entity) async =>
       await _scannerManager?.indicativeSearch(entity);
 
   /*Culture API methods*/
@@ -129,11 +127,11 @@ class SkyScannerApi {
 
   /*Geo API methods*/
   /// Returns a Map of geographical locations in a language determined by the given [locale].
-  Future<GeoFlightResponse?> getGeoFlights(String locale) async =>
-      await _scannerManager?.getGeoFlights(locale);
+  Future<GeoFlightResponse?> getGeoFlights({required String locale}) async =>
+      await _scannerManager?.getGeoFlights(locale: locale);
 
-  /// Returns a Map of geographical locations in a language determined by the given [locale] starting from the nearest airport.
-  Future<Map<String, dynamic>?> getGeoNearestFlights(
+  /// Returns a Map of geographical locations in a language determined by the given [localeData] starting from the nearest airport.
+  Future<GeoFlightResponse?> getGeoNearestFlights(
           {required NearestFlightEntity nearestFlight}) async =>
-      await _scannerManager?.getGeoNearestFlights(nearestFlight);
+      await _scannerManager?.getGeoNearestFlights(nearestFlight: nearestFlight);
 }

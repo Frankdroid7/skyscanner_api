@@ -1,10 +1,8 @@
-import 'package:skyscanner_api/src/common/common_export.dart';
+import 'package:skyscanner_api/src/common/models/sky_scanner_coordinates.dart';
 
 class GeoFlightResponse {
-  final logger = getLogger('GeoFlightResponse');
-
   final String? status;
-  final List<Places>? places;
+  final List<GeoFlightPlaces>? places;
 
   GeoFlightResponse({this.status, this.places});
 
@@ -18,14 +16,14 @@ class GeoFlightResponse {
   }
 
   factory GeoFlightResponse.fromMap(Map<String, dynamic> map) {
-    List<Places> places = [];
-    map['places']
-        ?.forEach((key, _) => places.add(Places.fromMap(map['places']?[key])));
+    List<GeoFlightPlaces> places = [];
+    map['places']?.forEach(
+        (key, _) => places.add(GeoFlightPlaces.fromMap(map['places']?[key])));
     return GeoFlightResponse(status: map['status'], places: places);
   }
 }
 
-class Places {
+class GeoFlightPlaces {
   final String? entityId;
   final String? parentId;
   final String? name;
@@ -33,7 +31,7 @@ class Places {
   final String? iata;
   final Coordinates? coordinates;
 
-  Places(
+  GeoFlightPlaces(
       {this.entityId,
       this.parentId,
       this.name,
@@ -41,68 +39,16 @@ class Places {
       this.iata,
       this.coordinates});
 
-  Map<String, dynamic> toMap() {
-    final result = <String, dynamic>{};
-
-    if (entityId != null) {
-      result.addAll({'entityId': entityId});
-    }
-    if (parentId != null) {
-      result.addAll({'parentId': parentId});
-    }
-    if (name != null) {
-      result.addAll({'name': name});
-    }
-    if (type != null) {
-      result.addAll({'type': type});
-    }
-    if (iata != null) {
-      result.addAll({'iata': iata});
-    }
-    if (coordinates != null) {
-      result.addAll({'coordinates': coordinates!.toMap()});
-    }
-
-    return result;
-  }
-
-  factory Places.fromMap(Map<String, dynamic> map) {
-    return Places(
+  factory GeoFlightPlaces.fromMap(Map<String, dynamic> map) {
+    return GeoFlightPlaces(
       entityId: map['entityId'],
       parentId: map['parentId'],
       name: map['name'],
       type: map['type'],
       iata: map['iata'],
       coordinates: map['coordinates'] != null
-          ? Coordinates.fromMap(map['coordinates'])
+          ? Coordinates.fromJson(map['coordinates'])
           : null,
-    );
-  }
-}
-
-class Coordinates {
-  final double? latitude;
-  final double? longitude;
-
-  Coordinates({this.latitude, this.longitude});
-
-  Map<String, dynamic> toMap() {
-    final result = <String, dynamic>{};
-
-    if (latitude != null) {
-      result.addAll({'latitude': latitude});
-    }
-    if (longitude != null) {
-      result.addAll({'longitude': longitude});
-    }
-
-    return result;
-  }
-
-  factory Coordinates.fromMap(Map<String, dynamic> map) {
-    return Coordinates(
-      latitude: map['latitude']?.toDouble(),
-      longitude: map['longitude']?.toDouble(),
     );
   }
 }

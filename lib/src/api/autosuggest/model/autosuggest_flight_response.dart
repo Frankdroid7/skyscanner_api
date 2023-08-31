@@ -30,7 +30,7 @@ class AutosuggestFlightPlaces {
   String? countryName;
 
   /// Type of place. See section below for possible values for PLACE_TYPE.
-  List<List<int>>? highlighting;
+  List<dynamic>? highlighting;
 
   /// Two dimensional list displaying keywords in entity to be highlighted. E.g. [[7,15]]
   String? type;
@@ -75,7 +75,7 @@ class AutosuggestFlightPlaces {
     location = json['location'];
     hierarchy = json['hierarchy'];
     type = json['type'];
-    highlighting = json['highlighting'] ?? [];
+    highlighting = json['highlighting'] ?? [] as List<List<int>>?;
 
     airportInformation = json['airportInformation'] != null
         ? AirportInformation.fromJson(json['airportInformation'])

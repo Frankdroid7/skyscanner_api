@@ -1,4 +1,4 @@
-import 'date.dart';
+import '../../../../../common/models/sky_scanner_date.dart';
 import 'destination_place_id.dart';
 import 'origin_place_id.dart';
 

@@ -1,7 +1,8 @@
-import 'package:skyscanner_api/src/api/flight/indicative/entity/indicative_search_entity/indicative_search_entity.dart';
+import 'package:skyscanner_api/src/api/flight/export_flight.dart';
 
 import '../../../../network/network_exports.dart';
 
 abstract class IndicativeSearchContract extends NetworkService {
-  Future<dynamic> indicativeSearch(IndicativeSearchEntity entity);
+  Future<FlightLivePricesCreateResponse> indicativeSearch(
+      IndicativeSearchEntity entity);
 }

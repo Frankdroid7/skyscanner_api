@@ -1,2 +1,2 @@
-export 'package:skyscanner_api/src/api/culture/model/response/market.dart';
-export 'package:skyscanner_api/src/api/culture/model/response/nearest_culture.dart';
+export 'package:skyscanner_api/src/api/culture/model/market.dart';
+export 'package:skyscanner_api/src/api/culture/model/nearest_culture.dart';
