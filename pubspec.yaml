@@ -1,5 +1,6 @@
 name: skyscanner_api
-description: A new Flutter project.
+description: An unofficial sky_scanner api package that allow developers easily integrate the Sky scanner API to their Flutter app.
+
 
 publish_to: 'none' 
 
