@@ -30,11 +30,11 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final _scannerApi = SkyScannerApi();
-  String? _data = "Press Floating Button";
+  final String _data = "Press Floating Button";
 
   @override
   void initState() {
-    _scannerApi.initializeApiKey(apiKey: 'sh428739766321522266746152871799');
+    _scannerApi.initializeApiKey(apiKey: 'API KEY HERE');
     super.initState();
   }
 
@@ -68,7 +68,10 @@ class _MyHomePageState extends State<MyHomePage> {
 
       final FlightLivePricesCreateResponse? response =
           await _scannerApi.indicativeSearch(entity);
-    } catch (e) {}
+      print(response?.toJson());
+    } catch (e) {
+      print(e.toString());
+    }
   }
 
   @override
